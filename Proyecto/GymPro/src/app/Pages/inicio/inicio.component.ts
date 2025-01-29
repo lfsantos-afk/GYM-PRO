@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {CrearSuscripcionComponent} from '../Clientes/crear-suscripcion/crear-suscripcion.component';
 
 @Component({
   selector: 'app-inicio',
-  imports: [],
+  imports: [
+  ],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
 export class InicioComponent {
+  constructor() {
+  }
+
 
 }

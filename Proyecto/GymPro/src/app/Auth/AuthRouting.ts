@@ -2,7 +2,7 @@
 import {AuthRutas} from 'Constantes/Constantes';
 
 
-const RutasAuth: Routes = [
+const RutasDeAuthenticacion: Routes = [
   {
     path: AuthRutas.RouteLogIn,
     loadComponent: () => import("./login/login.component").then(x => x.LoginComponent)
@@ -10,6 +10,10 @@ const RutasAuth: Routes = [
   {
     path: AuthRutas.RouteSignUp,
     loadComponent: () => import("./sing-up/sing-up.component").then(x => x.SingUpComponent)
+  }
+  , {
+    path: AuthRutas.RouteSignUpAdmin,
+    loadComponent: () => import("./sign-up-admin/sign-up-admin.component").then(x => x.SignUpAdminComponent)
   }
   , {
     path: "",
@@ -24,4 +28,4 @@ const RutasAuth: Routes = [
   }
 
 ];
-export default RutasAuth;
+export default RutasDeAuthenticacion;

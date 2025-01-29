@@ -1,18 +1,21 @@
 ﻿export const AuthRutas = {
   LogIn: '/auth/LogIn',
   SignUp: '/auth/SignUp',
+  SignUpAdmin: '/auth/SignUpAdmin',
 
   RouteLogIn: 'LogIn',
   RouteSignUp: 'SignUp',
+  RouteSignUpAdmin: 'SignUpAdmin',
 }
-
 export const Rutas = {
 
   Inicio: '/inicio',
   AccesoDenegado: 'accesoDenegado',
   Admin: '/admin',
   Cliente: '/cliente',
+  ClienteHistorial: '/cliente/historial',
   Membresias: '/membresias',
+  AdquirirSuscripcion: '/membresias/comprar/',
   ClientesAdmin: '/admin/clientes',
   Reportes: '/admin/reportes',
   Historial: '/cliente/historial',
@@ -23,9 +26,18 @@ export const RutasRouting = {
   RouteAdmin: 'admin',
   RouteCliente: 'cliente',
   RouteMembresias: 'membresias',
+  RouteAdquirirSuscripcion: 'membresias/comprar/:id',
   RouteClientesAdmin: 'clientes',
   RouteClientesHistorial: 'historial',
   RouteReportes: 'reportes',
   NoEncontrado: "/paginaNoEncontrada",
 
+}
+
+
+
+export  const  EstadoSuscripcion = {
+  Activa : "Activa",
+  Vencida : "Vencida",
+  FaltaPago : "Falta Pago",
 }

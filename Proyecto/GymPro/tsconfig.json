@@ -5,7 +5,9 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "paths": {
-      "Constantes/*": ["./src/app/Shared/Constantes/*"]
+      "Constantes/*": ["./src/app/Shared/Constantes/*"],
+      "Modelos/*": ["./src/app/Modelos/*"],
+      "Servicios/*": ["./src/app/Servicios/*"],
     },
     "strict": true,
     "noImplicitOverride": true,
