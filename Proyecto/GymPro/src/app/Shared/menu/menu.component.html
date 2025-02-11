@@ -8,13 +8,13 @@
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
 
       <div class="flex items-center space-x-4">
-        <button class="bg-red-500  hover:bg-gray-50 hover:text-red-500 text-white py-1 px-4 rounded-lg"
+        <button class="bg-blue-500  hover:bg-blue-900 hover:text-blue-500 text-white py-1 px-4 rounded-lg"
                 (click)="btnLogin()">
           {{ role !== null ? "Cerrar sesión" : "Iniciar sesión" }}
         </button>
         @if (role === null) {
           <span [routerLink]="['/auth/SignUp']"
-                class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white py-1 px-4 rounded-lg">
+                class="border border-blue-500 text-blue-700 hover:bg-blue-700 hover:text-white py-1 px-4 rounded-lg">
             Registrarse
           </span>
         }
