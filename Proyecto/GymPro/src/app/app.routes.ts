@@ -21,10 +21,7 @@ export const routes: Routes = [
     path: RutasRouting.RouteMembresias,
     loadComponent: () => import('./Pages/membresias/membresias.component').then(m => m.MembresiasComponent),
   },
-  {
-    path: RutasRouting.RouteMembresias + "/:id",
-    loadComponent: () => import("./Pages/membresia-detalles/membresia-detalles.component").then(m => m.MembresiaDetallesComponent),
-  },
+
   {
     path: RutasRouting.RouteAdquirirSuscripcion,
     canActivate: [requiereAuthGuard,rolesGuard([Roles.Client])],

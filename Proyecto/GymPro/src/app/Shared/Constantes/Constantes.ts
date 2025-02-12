@@ -14,6 +14,7 @@ export const Rutas = {
   Admin: '/admin',
   Cliente: '/cliente',
   ClienteHistorial: '/cliente/historial',
+  Pagar: '/cliente/pagar',
   Membresias: '/membresias',
   AdquirirSuscripcion: '/membresias/comprar/',
   ClientesAdmin: '/admin/clientes',

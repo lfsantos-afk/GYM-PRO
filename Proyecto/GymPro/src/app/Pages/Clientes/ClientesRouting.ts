@@ -9,7 +9,11 @@ const ClientesRouting: Routes = [
   },
   {
     path: RutasRouting.RouteAdquirirSuscripcion,
-    loadComponent : () => import("./crear-suscripcion/crear-suscripcion.component").then(x => x.CrearSuscripcionComponent),
+    loadComponent: () => import("./crear-suscripcion/crear-suscripcion.component").then(x => x.CrearSuscripcionComponent),
+  },
+  {
+    path: "pagar/:id",
+    loadComponent: () => import("./pagar/pagar.component").then(x => x.PagarComponent),
   },
   {
     path: '',

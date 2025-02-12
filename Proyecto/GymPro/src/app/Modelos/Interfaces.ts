@@ -12,15 +12,53 @@
 
 export interface MyNotificacion {
   message: string;
-  tipo : "bien" | "warning" | "error";
+  tipo: "bien" | "warning" | "error";
 
 }
-export  interface Membresia {
+
+export class Membresia {
+  id !: number;
+  Nombre!: string;
+  Descripcion!: string;
+  DuracionMeses!: number;
+  Precio!: number;
+  Activa!: boolean;
+  publicoObjectivo!: string;
+}
+
+// export  interface Membresia {
+//   id: number
+//   Nombre: string
+//   Descripcion: string
+//   DuracionMeses: number
+//   Precio: number
+//   Activa: boolean
+//   publicoObjectivo: string
+// }
+
+
+export interface Suscripcion {
   id: number
-  Nombre: string
-  Descripcion: string
-  DuracionMeses: number
-  Precio: number
-  Activa: boolean
-  publicoObjectivo: string
+  ClienteId: number
+  MembresiaId: number
+  Inicia: string
+  Finaliza: string
+  Estatus: string
+  Renovante: boolean
+  Membresias: Membresia
+}
+export interface Pago {
+  id: number
+  SubscripcionId: number
+  Monto: number
+  Fecha: string
+  metodo: string
+  Estatus: string
+  Suscripciones: {
+    id : number,
+    Membresias : {
+      id: number
+      Precio: number
+    }
+  }
 }

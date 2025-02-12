@@ -38,28 +38,33 @@ export class MembresiasComponent implements OnInit {
     }
   }
 
+  IrComprar(id: number) {
+    this.router.navigate([Rutas.AdquirirSuscripcion, id.toString()]);
+  }
 
   ObtenerTiempoMembresia(membresia: Membresia) {
 
-    let result = "mensual";
-    if (membresia.DuracionMeses == 1) {
-      result = "mensual";
-    } else if (membresia.DuracionMeses == 3) {
-      result = "trimestral";
-    } else if (membresia.DuracionMeses == 6) {
-      result = "semestral";
-    } else if (membresia.DuracionMeses == 12) {
-      result = "anual";
+    if (membresia) {
+
+      let result = "mensual";
+      if (membresia.DuracionMeses == 1) {
+        result = "mensual";
+      } else if (membresia.DuracionMeses == 3) {
+        result = "trimestral";
+      } else if (membresia.DuracionMeses == 6) {
+        result = "semestral";
+      } else if (membresia.DuracionMeses == 12) {
+        result = "anual";
+      } else {
+        result = membresia.DuracionMeses + " Meses";
+      }
+      return result;
+
     } else {
-      result = membresia.DuracionMeses + " Meses";
+      return "";
     }
-    return result;
   }
 
-  IrComprar(id: number) {
-    this.router.navigate([Rutas.AdquirirSuscripcion,id.toString()]);
-    //this.router.navigate(["/membresias/comprar",id.toString()]);
-  }
 
   protected readonly Rutas = Rutas;
   protected readonly Roles = Roles;

@@ -6,9 +6,7 @@
         <p class="text-center text-gray-600 dark:text-gray-400 mt-2">{{ membresia.publicoObjectivo }}</p>
         <div class="text-center my-4">
           <span class="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400">{{ membresia.Precio }}</span>
-          <span class="text-sm text-gray-500 dark:text-gray-300">/{{
-              ObtenerTiempoMembresia(membresia)
-            }}</span>
+          <span class="text-sm text-gray-500 dark:text-gray-300">/{{ ObtenerTiempoMembresia(membresia) }}</span>
         </div>
         <ul class="text-gray-700 dark:text-gray-300 space-y-2">
           @for (ofrece of membresia.Descripcion.slice(0, -1).split('.'); track $index) {
@@ -17,7 +15,6 @@
             </li>
           }
         </ul>
-        <a class="text-white underline" routerLink="{{membresia.id}}"> Mas info</a>
         @if (role !== Roles.Admin) {
           <button
             (click)="IrComprar(membresia.id)"
