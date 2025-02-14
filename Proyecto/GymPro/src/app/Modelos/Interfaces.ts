@@ -9,6 +9,15 @@
   direccion: string;
 }
 
+export interface ClientesAdmin {
+  id: number
+  Nombre: string
+  Apellido: string
+  Telefono: string
+  UserId: string
+  Direccion: string
+}
+
 
 export interface MyNotificacion {
   message: string;
@@ -47,6 +56,7 @@ export interface Suscripcion {
   Renovante: boolean
   Membresias: Membresia
 }
+
 export interface Pago {
   id: number
   SubscripcionId: number
@@ -55,8 +65,8 @@ export interface Pago {
   metodo: string
   Estatus: string
   Suscripciones: {
-    id : number,
-    Membresias : {
+    id: number,
+    Membresias: {
       id: number
       Precio: number
     }
