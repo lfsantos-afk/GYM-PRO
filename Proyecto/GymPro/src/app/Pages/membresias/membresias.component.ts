@@ -6,6 +6,7 @@ import {Rutas} from 'Constantes/Constantes';
 import {AuthServicio} from '../../Auth/AuthServicio';
 import {Roles} from 'Constantes/Roles';
 import {Router, RouterLink} from '@angular/router';
+import {ClienteServicio} from 'Servicios/ClienteServicio';
 
 @Component({
   selector: 'app-membresias',
@@ -18,16 +19,23 @@ import {Router, RouterLink} from '@angular/router';
 export class MembresiasComponent implements OnInit {
   membresias: Membresia[] = [];
   role: string | null = null;
+  clienteActualMembresias: string[] | null = null;
 
   constructor(private membresiaServ: MembresiaServicio,
               private NotificacionServ: NotificacionServicio,
               private authServicio: AuthServicio,
-              private router: Router,) {
+              private router: Router,
+              private clienteServicio: ClienteServicio) {
   }
 
   async ngOnInit() {
     this.authServicio.usuarioRolAction.subscribe(
-      role => this.role = role
+      role => {
+        this.role = role;
+        if (role == Roles.Client) {
+          this.ObtenerMembresiasCliente();
+        }
+      }
     );
     const result = await this.membresiaServ.ObtenerMembresias();
 
@@ -45,7 +53,6 @@ export class MembresiasComponent implements OnInit {
   ObtenerTiempoMembresia(membresia: Membresia) {
 
     if (membresia) {
-
       let result = "mensual";
       if (membresia.DuracionMeses == 1) {
         result = "mensual";
@@ -62,6 +69,14 @@ export class MembresiasComponent implements OnInit {
 
     } else {
       return "";
+    }
+  }
+
+  async ObtenerMembresiasCliente() {
+    const clienteActual = await this.authServicio.ObtenerClienteActual();
+    if (clienteActual.cliente !== null) {
+      const resultado = await this.clienteServicio.ObtenerSuscripcionesCliente(clienteActual.cliente?.id);
+      this.clienteActualMembresias = resultado.Suscripciones.map(x => x.MembresiaId.toString());
     }
   }
 

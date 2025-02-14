@@ -56,6 +56,16 @@
         </div>
 
       }
+    } @empty {
+      <div class="flex flex-col items-center justify-center">
+        <p class="text-orange-200">No tienes Suscripciones</p>
+        <button routerLink="/membresias"
+              role="button"
+              class="w-full mt-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600">
+          Empezar
+        </button>
+
+      </div>
     }
   </div>
 

@@ -1,4 +1,9 @@
-<section class="flex justify-center items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-50 h-screen w-screen">
+
+
+
+<section
+  class="flex justify-center items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-50 h-screen w-screen">
+
   <div class=" flex-1 m-10">
     @if (membresia) {
       <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
@@ -6,7 +11,7 @@
         <p class="text-center text-gray-600 dark:text-gray-400 mt-2">{{ membresia.publicoObjectivo }}</p>
         <div class="text-center my-4">
           <span class="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400">{{ membresia.Precio }}</span>
-          <span class="text-sm text-gray-500 dark:text-gray-300">/{{ObtenerTiempoMembresia()}}</span>
+          <span class="text-sm text-gray-500 dark:text-gray-300">/{{ ObtenerTiempoMembresia() }}</span>
         </div>
         <ul class="text-gray-700 dark:text-gray-300 space-y-2">
           @for (ofrece of membresia.Descripcion.slice(0, -1).split('.'); track $index) {
