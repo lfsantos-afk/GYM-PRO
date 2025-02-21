@@ -1,137 +1,213 @@
-<section class="bg-gray-50 text-gray-900 dark:bg-transparent w-screen h-screen">
-  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-    <!--          Registrar como administrador-->
-
-    <button type="button"
-            [routerLink]="[AuthRutas.SignUpAdmin]"
-            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
-      Soy administrador
-    </button>
-    <h1 class="text-4xl font-extrabold text-black dark:text-white">GYM PRO</h1>
-    <div
-      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+<section>
+  <div class="flex flex-col items-center justify-center mx-auto md:h-screen lg:py-0">
+    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-
-        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-          Registrese
+        <h1 class="text-xl font-bold leading-tight underline decoration-red-700 tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          Nuevo Cliente
         </h1>
-        <form [formGroup]="form" (ngSubmit)="Registrar()" class="space-y-4  ">
-
-          <!--          Email-->
-          <div>
-            <label for="email" class="block text-sm font-medium 50 dark:text-white">Correo electrónico</label>
-            <input
-              id="email"
-              type="email"
-              formControlName="email"
-              class="mt-1 dark:text-gray-950 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-            @if (form.get('email')?.invalid && form.get('email')?.touched) {
-              <div class="text-red-500 text-sm">
-                Proporcione un correo válido.
-              </div>
-            }
+        <form [formGroup]="form" (ngSubmit)="Registrar()" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Email -->
+            <div class="col-span-2">
+              <label for="email" class="block text-sm font-medium dark:text-white">Correo electrónico</label>
+              <input id="email" type="email" formControlName="email"
+                     class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:text-white" />
+              @if (form.get('email')?.invalid && form.get('email')?.touched) {
+                <div class="text-red-500 text-sm">Proporcione un correo válido.</div>
+              }
+            </div>
+            <div>
+              <label for="nombre" class="block text-sm font-medium dark:text-white">Nombre</label>
+              <input id="nombre" type="text" formControlName="nombre"
+                     class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:text-white" />
+              @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
+                <div class="text-red-500 text-sm">El nombre es obligatorio.</div>
+              }
+            </div>
+            <div>
+              <label for="apellido" class="block text-sm font-medium dark:text-white">Apellido</label>
+              <input id="apellido" type="text" formControlName="apellido"
+                     class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:text-white" />
+              @if (form.get('apellido')?.invalid && form.get('apellido')?.touched) {
+                <div class="text-red-500 text-sm">El apellido es obligatorio.</div>
+              }
+            </div>
+            <div>
+              <label for="telefono" class="block text-sm font-medium dark:text-white">Teléfono</label>
+              <input id="telefono" type="text" formControlName="telefono"
+                     class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:text-white" />
+              @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {
+                <div class="text-red-500 text-sm">Proporcione un teléfono válido.</div>
+              }
+            </div>
+            <div>
+              <label for="password" class="block text-sm font-medium dark:text-white">Contraseña</label>
+              <input id="password" type="password" formControlName="password"
+                     class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:text-white" />
+              @if (form.get('password')?.invalid && form.get('password')?.touched) {
+                <div class="text-red-500 text-sm">La contraseña debe tener al menos 6 caracteres.</div>
+              }
+            </div>
+            <div class="col-span-2">
+              <label for="direccion" class="block text-sm font-medium dark:text-white">Dirección</label>
+              <textarea id="direccion" formControlName="direccion"
+                        class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:text-white"></textarea>
+              @if (form.get('direccion')?.invalid && form.get('direccion')?.touched) {
+                <div class="text-red-500 text-sm">La dirección es obligatoria.</div>
+              }
+            </div>
           </div>
-
-          <!--          Password-->
-          <div>
-            <label for="password" class="block text-sm font-medium  dark:text-white">Contraseña</label>
-            <input
-              id="password"
-              type="password"
-              formControlName="password"
-              class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-            @if (form.get('password')?.invalid && form.get('password')?.touched) {
-              <div class="text-red-500 text-sm">
-                La contraseña debe tener al menos 6 caracteres.
-              </div>
-            }
-          </div>
-
-          <!--          Nombre-->
-          <div>
-            <label for="nombre" class="block text-sm font-medium  dark:text-white">Nombre</label>
-            <input
-              id="nombre"
-              type="text"
-              formControlName="nombre"
-              class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-            @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
-              <div class="text-red-500 text-sm">
-                El nombre es obligatorio.
-              </div>
-            }
-          </div>
-
-          <!--          Apellido-->
-          <div>
-            <label for="apellido" class="block text-sm font-medium  dark:text-white">Apellido</label>
-            <input
-              id="apellido"
-              type="text"
-              formControlName="apellido"
-              class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-            @if (form.get('apellido')?.invalid && form.get('apellido')?.touched) {
-              <div class="text-red-500 text-sm">
-                El apellido es obligatorio.
-              </div>
-            }
-          </div>
-
-          <!--          Telefono-->
-          <div>
-            <label for="telefono" class="block text-sm font-medium  dark:text-white">Teléfono</label>
-            <input
-              id="telefono"
-              type="text"
-              formControlName="telefono"
-              class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-            @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {
-
-              <div class="text-red-500 text-sm">
-                Proporcione un teléfono válido.
-              </div>
-            }
-          </div>
-
-          <!--          Direccion-->
-          <div>
-            <label for="direccion" class="block text-sm font-medium  dark:text-white">Dirección</label>
-            <textarea
-              id="direccion"
-              formControlName="direccion"
-              class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            ></textarea>
-            @if (form.get('direccion')?.invalid && form.get('direccion')?.touched) {
-              <div class="text-red-500 text-sm">
-                La dirección es obligatoria.
-              </div>
-            }
-          </div>
-
-          <button
-            type="submit"
-            [disabled]="form.invalid"
-            class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500"
-          >
+          <button type="submit" [disabled]="form.invalid"
+                  class="w-full bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 focus:ring-2 focus:ring-green-500">
             Registrar
           </button>
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
             ¿Tienes cuenta?
-            <a
-              [routerLink]="AuthRutas.LogIn"
-              class="font-medium text-green-600 hover:underline dark:text-green-500"
-            >Inica seccion!</a
-            >
+            <a [routerLink]="AuthRutas.LogIn"
+               class="font-medium text-green-600 hover:underline dark:text-green-500">Inicia sesión!</a>
           </p>
         </form>
-
+        <span [routerLink]="[AuthRutas.SignUpAdmin]" class="text-gray-500 text-xs underline" role="button">Soy Admistrador</span>
       </div>
     </div>
-
   </div>
 </section>
+
+
+<!--<section class="bg-gray-50 text-gray-900 dark:bg-transparent w-screen h-screen">-->
+<!--  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">-->
+<!--    &lt;!&ndash;          Registrar como administrador&ndash;&gt;-->
+
+<!--    <button type="button"-->
+<!--            [routerLink]="[AuthRutas.SignUpAdmin]"-->
+<!--            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">-->
+<!--      Soy administrador-->
+<!--    </button>-->
+<!--    <h1 class="text-4xl font-extrabold text-black dark:text-white">GYM PRO</h1>-->
+<!--    <div-->
+<!--      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">-->
+<!--      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">-->
+
+<!--        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">-->
+<!--          Registrese-->
+<!--        </h1>-->
+<!--        <form [formGroup]="form" (ngSubmit)="Registrar()" class="space-y-4  ">-->
+
+<!--          &lt;!&ndash;          Email&ndash;&gt;-->
+<!--          <div>-->
+<!--            <label for="email" class="block text-sm font-medium 50 dark:text-white">Correo electrónico</label>-->
+<!--            <input-->
+<!--              id="email"-->
+<!--              type="email"-->
+<!--              formControlName="email"-->
+<!--              class="mt-1 dark:text-gray-950 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"-->
+<!--            />-->
+<!--            @if (form.get('email')?.invalid && form.get('email')?.touched) {-->
+<!--              <div class="text-red-500 text-sm">-->
+<!--                Proporcione un correo válido.-->
+<!--              </div>-->
+<!--            }-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash;          Password&ndash;&gt;-->
+<!--          <div>-->
+<!--            <label for="password" class="block text-sm font-medium  dark:text-white">Contraseña</label>-->
+<!--            <input-->
+<!--              id="password"-->
+<!--              type="password"-->
+<!--              formControlName="password"-->
+<!--              class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"-->
+<!--            />-->
+<!--            @if (form.get('password')?.invalid && form.get('password')?.touched) {-->
+<!--              <div class="text-red-500 text-sm">-->
+<!--                La contraseña debe tener al menos 6 caracteres.-->
+<!--              </div>-->
+<!--            }-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash;          Nombre&ndash;&gt;-->
+<!--          <div>-->
+<!--            <label for="nombre" class="block text-sm font-medium  dark:text-white">Nombre</label>-->
+<!--            <input-->
+<!--              id="nombre"-->
+<!--              type="text"-->
+<!--              formControlName="nombre"-->
+<!--              class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"-->
+<!--            />-->
+<!--            @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {-->
+<!--              <div class="text-red-500 text-sm">-->
+<!--                El nombre es obligatorio.-->
+<!--              </div>-->
+<!--            }-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash;          Apellido&ndash;&gt;-->
+<!--          <div>-->
+<!--            <label for="apellido" class="block text-sm font-medium  dark:text-white">Apellido</label>-->
+<!--            <input-->
+<!--              id="apellido"-->
+<!--              type="text"-->
+<!--              formControlName="apellido"-->
+<!--              class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"-->
+<!--            />-->
+<!--            @if (form.get('apellido')?.invalid && form.get('apellido')?.touched) {-->
+<!--              <div class="text-red-500 text-sm">-->
+<!--                El apellido es obligatorio.-->
+<!--              </div>-->
+<!--            }-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash;          Telefono&ndash;&gt;-->
+<!--          <div>-->
+<!--            <label for="telefono" class="block text-sm font-medium  dark:text-white">Teléfono</label>-->
+<!--            <input-->
+<!--              id="telefono"-->
+<!--              type="text"-->
+<!--              formControlName="telefono"-->
+<!--              class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"-->
+<!--            />-->
+<!--            @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {-->
+
+<!--              <div class="text-red-500 text-sm">-->
+<!--                Proporcione un teléfono válido.-->
+<!--              </div>-->
+<!--            }-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash;          Direccion&ndash;&gt;-->
+<!--          <div>-->
+<!--            <label for="direccion" class="block text-sm font-medium  dark:text-white">Dirección</label>-->
+<!--            <textarea-->
+<!--              id="direccion"-->
+<!--              formControlName="direccion"-->
+<!--              class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"-->
+<!--            ></textarea>-->
+<!--            @if (form.get('direccion')?.invalid && form.get('direccion')?.touched) {-->
+<!--              <div class="text-red-500 text-sm">-->
+<!--                La dirección es obligatoria.-->
+<!--              </div>-->
+<!--            }-->
+<!--          </div>-->
+
+<!--          <button-->
+<!--            type="submit"-->
+<!--            [disabled]="form.invalid"-->
+<!--            class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500"-->
+<!--          >-->
+<!--            Registrar-->
+<!--          </button>-->
+<!--          <p class="text-sm font-light text-gray-500 dark:text-gray-400">-->
+<!--            ¿Tienes cuenta?-->
+<!--            <a-->
+<!--              [routerLink]="AuthRutas.LogIn"-->
+<!--              class="font-medium text-green-600 hover:underline dark:text-green-500"-->
+<!--            >Inica seccion!</a-->
+<!--            >-->
+<!--          </p>-->
+<!--        </form>-->
+
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</section>-->

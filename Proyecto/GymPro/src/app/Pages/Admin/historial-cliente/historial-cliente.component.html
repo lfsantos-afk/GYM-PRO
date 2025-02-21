@@ -1,0 +1,32 @@
+<section class="flex justify-center items-center min-h-screen bg-gray-950 text-white p-6">
+
+  <div class="w-full max-w-4xl p-6 mx-auto">
+    <h2 class="text-center text-2xl font-semibold mb-4">Historial {{ NombreCliente }}</h2>
+    <div class="bg-gray-800 rounded-lg overflow-hidden">
+      <table class="table-fixed">
+        <thead>
+        <tr class="bg-gray-700 text-white">
+          <th class="px-6 py-3">Membresia</th>
+          <th class="px-6 py-3">inicia</th>
+          <th class="px-6 py-3">Finaliza</th>
+          <th class="px-6 py-3">Estado</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+          @for (suscripcion of Suscripciones; track $index) {
+            <tr>
+              <td>{{ suscripcion.Membresias.Nombre }}</td>
+              <td>{{ suscripcion.Inicia }}</td>
+              <td>{{ suscripcion.Finaliza }}</td>
+              <td>{{ suscripcion.Estatus }}</td>
+            </tr>
+          } @empty {
+            <h3 class="text-blue-600 underline text-3xl">Sin historial</h3>
+          }
+        </tbody>
+      </table>
+
+      
+    </div>
+  </div>
+</section>

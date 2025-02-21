@@ -1,14 +1,13 @@
 <div class="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
   <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
     @for (membresia of membresias; track membresia.id) {
-      <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+      <div
+        class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 {{clienteActualMembresias?.includes(membresia.id.toString()) ? 'border-4 border-green-600 ' : ''  }} ">
         <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-gray-200">{{ membresia.Nombre }}</h2>
         <p class="text-center text-gray-600 dark:text-gray-400 mt-2">{{ membresia.publicoObjectivo }}</p>
         <div class="text-center my-4">
           <span class="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400">{{ membresia.Precio }}</span>
-          <span class="text-sm text-gray-500 dark:text-gray-300">/{{
-              ObtenerTiempoMembresia(membresia)
-            }}</span>
+          <span class="text-sm text-gray-500 dark:text-gray-300">/{{ ObtenerTiempoMembresia(membresia) }}</span>
         </div>
         <ul class="text-gray-700 dark:text-gray-300 space-y-2">
           @for (ofrece of membresia.Descripcion.slice(0, -1).split('.'); track $index) {
@@ -17,12 +16,12 @@
             </li>
           }
         </ul>
-        <a routerLink="{{membresia.id}}"> Mas info</a>
         @if (role !== Roles.Admin) {
           <button
-            (click)="IrComprar(membresia.id)"
-            class="w-full mt-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600">
-            Elegir Plan
+            [routerLink]="[Rutas.AdquirirSuscripcion,membresia.id]"
+            [disabled]="clienteActualMembresias?.includes(membresia.id.toString())"
+            class="w-full mt-6 py-2 bg-indigo-600 text-white disabled:bg-indigo-950  rounded-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-center inline-block">
+            {{ clienteActualMembresias?.includes(membresia.id.toString()) ? "Activa" : "Elegir" }}
           </button>
         }
       </div>

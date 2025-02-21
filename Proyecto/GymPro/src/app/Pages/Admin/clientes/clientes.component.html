@@ -1,1 +1,40 @@
-<p>clientes works!</p>
+@if (mostrarHistorial) {
+  <button class="text-blue-800" (click)="OcultarMostrarHistorial()">volver</button>
+  <app-historial-cliente-admin [Suscripciones]="SuscripcionesCliente"
+                               [NombreCliente]="NombreCliente"></app-historial-cliente-admin>
+} @else {
+  <div class="flex justify-center items-center min-h-screen bg-gray-950 text-white p-6">
+
+    <div class="w-full max-w-4xl p-6 mx-auto">
+      <h2 class="text-center text-2xl font-semibold mb-4">Clientes</h2>
+      <div class="bg-gray-800 rounded-lg overflow-hidden">
+        <table class="table-fixed">
+          <thead>
+          <tr class="bg-gray-700 text-white">
+            <th class="px-6 py-3">Nombre</th>
+            <th class="px-6 py-3">Direccion</th>
+            <th class="px-6 py-3">Membresias</th>
+          </tr>
+          </thead>
+          <tbody class="text-center">
+            @for (cliente of clientes; track $index) {
+              <tr>
+                <td>{{ cliente.Nombre }}</td>
+                <td>{{ cliente.Direccion }}</td>
+                <td>
+                  <button
+                    (click)="ObtenerHistorialCliente(cliente.id.toString(), cliente.Nombre)"
+                    class="w-full mt-6 py-2 bg-indigo-600 text-white disabled:bg-indigo-950  rounded-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-center">
+                    Ver Historial
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+}
