@@ -37,7 +37,7 @@ export class MenuComponent {
     if (this.role !== null) {
       const result = await this.authServicio.CerrarSeccion();
       if (result) {
-        this.notificacionServicio.NotificarBien("Seccion cerrada.")
+        this.notificacionServicio.NotificarWarning("Seccion cerrada.")
         await this.router.navigate([AuthRutas.LogIn]);
       } else {
         this.notificacionServicio.NotificarBien("Error al cerrar seccion");

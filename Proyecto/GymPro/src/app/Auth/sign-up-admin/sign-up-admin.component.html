@@ -1,20 +1,13 @@
 
-
-<section class="bg-gray-50 dark:bg-gray-900 w-screen h-screen">
-  <button type="button"
-          [routerLink]="[AuthRutas.SignUp]"
-          class="text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-bold rounded-xl text-sm px-6 py-3 text-center me-2 mb-2">
-    Soy Cliente
-  </button>
+<!--<section>-->
+<!--  <div class="flex flex-col items-center justify-center mx-auto md:h-screen lg:py-0">-->
+<!--<section class="bg-gray-50 dark:bg-gray-900 w-screen h-screen">-->
+<section>
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-    <a href="#" class="flex items-center mb-6 text-3xl font-extrabold text-gray-900 dark:text-white">
-      <img class="w-10 h-10 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
-      Gym Admin
-    </a>
     <div class="w-full bg-white rounded-lg shadow-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
       <div class="p-6 space-y-6 md:space-y-8 sm:p-10">
         <h1 class="text-2xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-3xl dark:text-white">
-          Nueva cuenta
+          Administrador
         </h1>
         <form class="space-y-6 md:space-y-8" [formGroup]="form" (ngSubmit)="enviar()">
           <div>
@@ -37,6 +30,8 @@
             <a [routerLink]="AuthRutas.LogIn" class="font-bold text-red-600 hover:underline dark:text-red-500">Iniciar seccion</a>
           </p>
         </form>
+        <span [routerLink]="[AuthRutas.SignUp]" class="text-gray-500 text-xs underline" role="button">Soy Cliente</span>
+
       </div>
     </div>
     <p>{{ message }}</p>

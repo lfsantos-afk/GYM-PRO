@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Membresia} from 'Modelos/Interfaces';
+import {Membresia, Suscripcion} from 'Modelos/Interfaces';
 import {MembresiaServicio} from 'Servicios/MembresiaServicio';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router'
 import {NotificacionServicio} from 'Servicios/NotificacionServicio';
 import {Rutas} from 'Constantes/Constantes';
+import {ClienteServicio} from 'Servicios/ClienteServicio';
 
 @Component({
   selector: 'app-crear-suscripcion',
@@ -28,6 +29,7 @@ export class CrearSuscripcionComponent implements OnInit {
   minInicia = new Date().toISOString().split('T')[0];
 
   constructor(private serv: MembresiaServicio,
+              private clienteServicio: ClienteServicio,
               private route: ActivatedRoute,
               private notificar: NotificacionServicio,
               private router: Router,) {
@@ -46,7 +48,7 @@ export class CrearSuscripcionComponent implements OnInit {
       }
     } else {
       this.notificar.NotificarError("Membresia no encontrada 😀");
-      this.router.navigate([Rutas.Membresias]);
+      await this.router.navigate([Rutas.Membresias]);
     }
   }
 
@@ -75,7 +77,7 @@ export class CrearSuscripcionComponent implements OnInit {
 
   async enviar() {
 
-    const result = await this.serv.RegistrarSuscripcion(this.suscripcion.membresiaId,
+    const result = await this.clienteServicio.RegistrarSuscripcion(this.suscripcion.membresiaId,
       this.suscripcion.inicia,
       this.suscripcion.finaliza,
       this.suscripcion.renovante);
@@ -84,8 +86,8 @@ export class CrearSuscripcionComponent implements OnInit {
       this.notificar.NotificarError(result.error as string);
 
     } else {
-      this.notificar.NotificarBien("Suscripcion guardada");
-      await this.router.navigate([Rutas.ClienteHistorial]);
+      this.notificar.NotificarBien("Suscripcion guardada. Hagamos el pago");
+      await this.router.navigate([Rutas.Pagar, result.mensaje ]);
     }
   }
 
