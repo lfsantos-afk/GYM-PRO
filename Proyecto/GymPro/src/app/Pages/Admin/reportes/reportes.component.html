@@ -1,24 +1,44 @@
 <div class="flex justify-center items-center min-h-screen bg-gray-950 text-white p-6">
 
-  <div class="w-full max-w-4xl p-6 mx-auto">
-    <h2 class="text-center text-2xl font-semibold mb-4">Reportes</h2>
-    <h4 class="text-center text-2xl font-semibold mb-4">
+<!--  <div class="w-full max-w-4xl p-6 mx-auto">-->
+<!--    <h2 class="text-center text-2xl font-semibold mb-4">Reportes</h2>-->
+<!--    <h4 class="text-center text-2xl font-semibold mb-4">-->
+<!--      {{ datos.length }} Suscripciones-->
+<!--    </h4>-->
+<!--    <p-chart type="doughnut" [data]="datosReporte" [options]="opcionesReporte" [responsive]="true"-->
+<!--             (onDataSelect)="IrMembresia($event)" class="w-full md:w-[30rem]"/>-->
+
+<!--    <p-chart type="bar" [data]="datosReporte" [options]="opcionesReporte" class="h-[30rem]"/>-->
+
+<!--  </div>-->
+  <div class="flex flex-col items-center space-y-6">
+    <!-- Títulos Centrados -->
+    <h2 class="text-3xl font-bold text-white">Reportes</h2>
+    <h4 class="text-xl font-semibold text-gray-300">
       {{ datos.length }} Suscripciones
     </h4>
-    <div class="bg-gray-800 rounded-lg overflow-hidden">
-      @for (info of datos; track $index) {
 
-        <div
-          class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 border border-gray-50">
-          <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-gray-200">{{ info.cantidad }}
-            - {{ info.membresia.Nombre }}</h2>
+    <!-- Contenedor de Gráficos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl">
+      <!-- Gráfico de Pastel (Doughnut) -->
+      <div class="flex justify-center">
+        <p-chart type="doughnut"
+                 [data]="datosReporte"
+                 [options]="opcionesReporte"
+                 [responsive]="true"
+                 (onDataSelect)="IrMembresia($event)"
+                 class="w-[20rem] md:w-[25rem]" />
+      </div>
 
-          <div class="text-center my-4">
-            <span
-              class="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400">{{ info.membresia.Precio }}</span>
-          </div>
-        </div>
-      }
+      <!-- Gráfico de Barras (Bar) -->
+      <div class="flex justify-center">
+        <p-chart type="bar"
+                 [data]="datosReporte"
+                 [options]="opcionesReporte"
+                 class="w-full h-[25rem] md:h-[30rem]" />
+      </div>
     </div>
   </div>
+
+
 </div>
