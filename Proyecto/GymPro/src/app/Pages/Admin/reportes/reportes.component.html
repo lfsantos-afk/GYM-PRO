@@ -1,16 +1,6 @@
-<div class="flex justify-center items-center min-h-screen bg-gray-950 text-white p-6">
+<section class="flex justify-center items-center min-h-screen bg-gray-950 text-white p-6">
 
-<!--  <div class="w-full max-w-4xl p-6 mx-auto">-->
-<!--    <h2 class="text-center text-2xl font-semibold mb-4">Reportes</h2>-->
-<!--    <h4 class="text-center text-2xl font-semibold mb-4">-->
-<!--      {{ datos.length }} Suscripciones-->
-<!--    </h4>-->
-<!--    <p-chart type="doughnut" [data]="datosReporte" [options]="opcionesReporte" [responsive]="true"-->
-<!--             (onDataSelect)="IrMembresia($event)" class="w-full md:w-[30rem]"/>-->
 
-<!--    <p-chart type="bar" [data]="datosReporte" [options]="opcionesReporte" class="h-[30rem]"/>-->
-
-<!--  </div>-->
   <div class="flex flex-col items-center space-y-6">
     <!-- Títulos Centrados -->
     <h2 class="text-3xl font-bold text-white">Reportes</h2>
@@ -27,7 +17,7 @@
                  [options]="opcionesReporte"
                  [responsive]="true"
                  (onDataSelect)="IrMembresia($event)"
-                 class="w-[20rem] md:w-[25rem]" />
+                 class="w-[20rem] md:w-[25rem]"/>
       </div>
 
       <!-- Gráfico de Barras (Bar) -->
@@ -35,10 +25,9 @@
         <p-chart type="bar"
                  [data]="datosReporte"
                  [options]="opcionesReporte"
-                 class="w-full h-[25rem] md:h-[30rem]" />
+                 class="w-full h-[25rem] md:h-[30rem]"/>
       </div>
     </div>
   </div>
 
-
-</div>
+</section>
