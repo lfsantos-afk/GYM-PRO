@@ -5,11 +5,13 @@ import {NotificacionServicio} from 'Servicios/NotificacionServicio';
 import {Rutas} from 'Constantes/Constantes';
 import {ClienteServicio} from 'Servicios/ClienteServicio';
 import {HistorialClienteComponent} from '../historial-cliente/historial-cliente.component';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-clientes',
   imports: [
-    HistorialClienteComponent
+    HistorialClienteComponent,
+    FormsModule
   ],
   templateUrl: './clientes.component.html',
   styleUrl: './clientes.component.css'

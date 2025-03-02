@@ -12,7 +12,8 @@ export class NotificacionComponent implements OnInit {
 
   Notificacion: MyNotificacion | null = null;
 
-  constructor(private ServicioNotificacion: NotificacionServicio) {}
+  constructor(private ServicioNotificacion: NotificacionServicio) {
+  }
 
   ngOnInit() {
     this.ServicioNotificacion.notificacionObservable.subscribe(notificacion => {
@@ -21,4 +22,7 @@ export class NotificacionComponent implements OnInit {
   }
 
 
+  eliminarNotificacion() {
+    this.ServicioNotificacion.limpiarNotificacion();
+  }
 }

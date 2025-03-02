@@ -28,6 +28,9 @@ export class MenuComponent implements OnInit {
     this.authServicio.usuarioRolAction.subscribe(usuario =>
       this.role = usuario
     );
+    this.authServicio.ObtenerClienteActual().then(x => {
+      this.clienteActual = x.cliente;
+    })
   }
 
   async ngOnInit() {

@@ -37,18 +37,7 @@ export class PerfilComponent implements OnInit {
     const result = await this.clienteServ.ObtenerSuscripcionesCliente(clienteActual.cliente?.id.toString() ?? "");
     this.Suscripciones = result.Suscripciones;
   }
-
-  //
-  // async
-  //
-  // ngOnInit() {
-  //   const result = await this.authServ.ObtenerClienteActual();
-  //   if (result.cliente) {
-  //     this.cliente = result.cliente;
-  //   } else {
-  //     this.notificar.NotificarWarning("Algo salio mal al cargar tus datos.")
-  //   }
-  // }
+  
 
   editarPerfil()
     :
