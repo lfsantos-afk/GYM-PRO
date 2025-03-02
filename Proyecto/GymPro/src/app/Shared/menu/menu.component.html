@@ -1,26 +1,163 @@
+<!--&lt;!&ndash; Menu  &ndash;&gt;-->
+<!--<nav class="fixed w-full z-20 top-0 start-0 border-b bg-gray-950  ">-->
+<!--  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">-->
+<!--    <a [routerLink]="Rutas.Inicio" class="flex items-center space-x-3 rtl:space-x-reverse">-->
+<!--      <span class="self-center text-2xl whitespace-nowrap font-bold text-red-700 ">GymPro</span>-->
+<!--    </a>-->
+<!--    &lt;!&ndash;    Botones para incir seccion y registrase&ndash;&gt;-->
+<!--    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">-->
+
+<!--      <div class="flex items-center space-x-4">-->
+<!--        <button class="bg-blue-500  hover:bg-blue-900 hover:text-blue-500 text-white py-1 px-4 rounded-lg"-->
+<!--                (click)="btnLogin()">-->
+<!--          {{ role !== null ? "Cerrar sesión" : "Iniciar sesión" }}-->
+<!--        </button>-->
+<!--        @if (role === null) {-->
+<!--          <span [routerLink]="['/auth/SignUp']"-->
+<!--                class="border border-blue-500 text-blue-700 hover:bg-blue-700 hover:text-white py-1 px-4 rounded-lg">-->
+<!--            Registrarse-->
+<!--          </span>-->
+<!--        }-->
+<!--      </div>-->
+<!--      &lt;!&ndash;    Boton para abirir el Menu de  Pantallas pequeñas&ndash;&gt;-->
+
+<!--      <button (click)="BotonMenu()"-->
+<!--              type="button"-->
+<!--              class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"-->
+<!--              aria-controls="navbar-sticky">-->
+<!--        <span class="sr-only">Open main menu</span>-->
+<!--        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">-->
+<!--          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
+<!--                d="M1 1h15M1 7h15M1 13h15"/>-->
+<!--        </svg>-->
+<!--      </button>-->
+<!--    </div>-->
+<!--    <div [class.hidden]="!MenuAbierto"-->
+<!--         class="items-center justify-between w-full md:flex md:w-auto md:order-1"-->
+<!--         id="navbar-sticky">-->
+<!--      <ul-->
+<!--        class="flex flex-col tex-white p-4 md:p-0 mt-4 font-medium  rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">-->
+
+<!--        <li>-->
+<!--          <a [routerLink]="Rutas.Inicio"-->
+<!--             routerLinkActive="active-link"-->
+<!--             [routerLinkActiveOptions]="{exact: true}"-->
+<!--             class="nav-link text-gray-30">-->
+<!--            Inicio-->
+<!--          </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <a [routerLink]="Rutas.Membresias"-->
+<!--             routerLinkActive="active-link"-->
+<!--             class="nav-link text-gray-30">-->
+<!--            Membresias-->
+<!--          </a>-->
+<!--        </li>-->
+<!--        &lt;!&ndash;          ACCESO SOLO PARA Clientes&ndash;&gt;-->
+<!--        @if (role == Roles.Client) {-->
+<!--          <li>-->
+<!--            <a [routerLink]="Rutas.Historial"-->
+<!--               routerLinkActive="active-link"-->
+<!--               class="nav-link">-->
+<!--              Mis Suscripciones-->
+<!--            </a>-->
+<!--          </li>-->
+<!--        }-->
+<!--        &lt;!&ndash;          ACCESO SOLO PARA ADMINISTRADORES&ndash;&gt;-->
+<!--        @if (role == Roles.Admin) {-->
+<!--          <li>-->
+<!--            <a [routerLink]="Rutas.ClientesAdmin"-->
+<!--               routerLinkActive="active-link"-->
+<!--               class="nav-link">-->
+<!--              Clientes-->
+<!--            </a>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <a [routerLink]="Rutas.Reportes"-->
+<!--               routerLinkActive="active-link"-->
+<!--               class="nav-link">-->
+<!--              Reportes-->
+<!--            </a>-->
+<!--          </li>-->
+<!--        }-->
+<!--      </ul>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</nav>-->
+
 <!-- Menu  -->
-<nav class="fixed w-full z-20 top-0 start-0 border-b bg-gray-950  ">
+<nav class="fixed w-full z-20 top-0 start-0 border-b bg-gray-950">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a [routerLink]="Rutas.Inicio" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <span class="self-center text-2xl whitespace-nowrap font-bold text-red-700 ">GymPro</span>
+      <span class="self-center text-2xl whitespace-nowrap font-bold text-red-700">GymPro</span>
     </a>
-    <!--    Botones para incir seccion y registrase-->
+    <!--    Botones para iniciar sesión, registrarse o menú de usuario -->
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
 
       <div class="flex items-center space-x-4">
-        <button class="bg-blue-500  hover:bg-blue-900 hover:text-blue-500 text-white py-1 px-4 rounded-lg"
-                (click)="btnLogin()">
-          {{ role !== null ? "Cerrar sesión" : "Iniciar sesión" }}
-        </button>
+        <!-- Mostrar botones de login/registro si NO está autenticado -->
         @if (role === null) {
+          <button class="bg-blue-500 hover:bg-blue-900 hover:text-blue-500 text-white py-1 px-4 rounded-lg"
+                  (click)="btnLogin()">
+            Iniciar sesión
+          </button>
           <span [routerLink]="['/auth/SignUp']"
                 class="border border-blue-500 text-blue-700 hover:bg-blue-700 hover:text-white py-1 px-4 rounded-lg">
             Registrarse
           </span>
         }
-      </div>
-      <!--    Boton para abirir el Menu de  Pantallas pequeñas-->
+        <!-- Mostrar imagen de usuario y menú desplegable si está autenticado -->
+        @if (role !== null) {
+          <div class="relative">
+            <div class="cursor-pointer" (click)="toggleUserMenu()">
 
+              <!-- Imagen del usuario - sustituye la URL por la ruta real a la imagen del usuario -->
+              <img
+                [src]="role == Roles.Client ? '/userImage.png' : '/adminImg.jpeg'"
+                alt="Perfil de usuario"
+                class="w-10 h-10 rounded-full border-2 border-blue-500 object-cover"
+              />
+            </div>
+            <!-- Menú desplegable -->
+            @if (userMenuOpen) {
+              <div
+                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+
+                @if (role == Roles.Client) {
+                  <!-- Opción para ir al perfil -->
+                  <button routerLink="/perfil"
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
+                    Mi Perfil
+                  </button>
+                  <a [routerLink]="Rutas.Historial"
+                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
+                    Mis Suscripciones
+                  </a>
+                } @else {
+                  <button [routerLink]="Rutas.Membresias"
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
+                    Gestionar Membresias
+                  </button>
+                  <button [routerLink]="Rutas.Reportes"
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
+                    Reportes
+                  </button>
+                }
+                <div class="border-t border-gray-200 my-1"></div>
+                <!-- Opción para cerrar sesión -->
+                <button
+                  (click)="btnLogin()"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-500 hover:text-white">
+                  Cerrar sesión
+                </button>
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <!--    Boton para abrir el Menu de Pantallas pequeñas-->
       <button (click)="BotonMenu()"
               type="button"
               class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -36,7 +173,7 @@
          class="items-center justify-between w-full md:flex md:w-auto md:order-1"
          id="navbar-sticky">
       <ul
-        class="flex flex-col tex-white p-4 md:p-0 mt-4 font-medium  rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        class="flex flex-col tex-white p-4 md:p-0 mt-4 font-medium rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 
         <li>
           <a [routerLink]="Rutas.Inicio"
@@ -82,7 +219,5 @@
         }
       </ul>
     </div>
-
   </div>
 </nav>
-

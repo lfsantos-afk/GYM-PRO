@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {environment} from './../../environments/environment';
+import {environment} from '../../environments/environment';
 import {
   createClient,
   SignInWithPasswordCredentials,
@@ -71,7 +71,7 @@ export class AuthServicio {
 
     const {data, error} = await this.supabase.auth.signUp({
       email: cliente.email,
-      password: cliente.password,
+      password: cliente.Password,
       options: {
         data: {
           role: Roles.Client,
@@ -82,23 +82,23 @@ export class AuthServicio {
       return error;
       // notificacion de error
     } else {
-      cliente.userId = data.user?.id ?? "";
+      cliente.UserId = data.user?.id ?? "";
       const result = await this.CrearCliente(cliente);
       return result.error;
     }
 
   }
 
-  async CrearCliente(cliente: Cliente) {
+  private async CrearCliente(cliente: Cliente) {
     const {data, error} = await this.supabase
       .from('Clientes')
       .insert([
         {
-          Nombre: cliente.nombre,
-          Apellido: cliente.apellido,
-          Telefono: cliente.telefono,
-          Direccion: cliente.direccion,
-          UserId: cliente.userId
+          Nombre: cliente.Nombre,
+          Apellido: cliente.Apellido,
+          Telefono: cliente.Telefono,
+          Direccion: cliente.Direccion,
+          UserId: cliente.UserId
         },
       ])
       .select()
@@ -106,7 +106,7 @@ export class AuthServicio {
   }
 
   async ObtenerClienteActual() {
-
+    const user = await this.supabase.auth.getUser();
     const userId = await this.ObtenerClienteId();
     if (userId === null) {
       return {cliente: null, error: "No eres cliente. Inicia seccion."};
@@ -117,8 +117,9 @@ export class AuthServicio {
       .select('*')
       .eq("UserId ", userId)
       .limit(1) as { data: Cliente[], error: any };
-
-    return {cliente: Clientes?.[0], error};
+    let datosCliente = Clientes?.[0];
+    datosCliente.email = user.data.user?.email ?? "";
+    return {cliente: datosCliente, error};
 
   }
 

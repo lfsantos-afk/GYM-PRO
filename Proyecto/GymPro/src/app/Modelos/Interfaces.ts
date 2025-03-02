@@ -1,12 +1,20 @@
 ﻿export interface Cliente {
-  password: string;
+  Password: string;
   email: string;
   id: string;
-  nombre: string;
-  apellido: string;
-  telefono: string;
-  userId: string;
-  direccion: string;
+  Nombre: string;
+  Apellido: string;
+  Telefono: string;
+  UserId: string;
+  Direccion: string;
+  // password: string;
+  // email: string;
+  // id: string;
+  // nombre: string;
+  // apellido: string;
+  // telefono: string;
+  // userId: string;
+  // direccion: string;
 }
 
 export interface ClientesAdmin {

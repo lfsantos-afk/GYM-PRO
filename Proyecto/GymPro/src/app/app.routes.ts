@@ -3,10 +3,15 @@ import {rolesGuard} from './Shared/roles-guard.guard';
 import {Roles} from 'Constantes/Roles';
 import {Rutas, RutasRouting} from 'Constantes/Constantes';
 import {requiereAuthGuard} from './Shared/requiere-auth.guard';
+import {PerfilComponent} from './Pages/Clientes/perfil/perfil.component';
 
 export const routes: Routes = [
-
-
+  {
+    path: 'perfil',
+    canActivate: [requiereAuthGuard, rolesGuard([Roles.Client])],
+    component: PerfilComponent,
+  }
+  ,
   {
     path: 'auth',
     canActivate: [rolesGuard([Roles.Admin, Roles.Client])],
@@ -24,7 +29,7 @@ export const routes: Routes = [
 
   {
     path: RutasRouting.RouteAdquirirSuscripcion,
-    canActivate: [requiereAuthGuard,rolesGuard([Roles.Client])],
+    canActivate: [requiereAuthGuard, rolesGuard([Roles.Client])],
     loadComponent: () => import("./Pages/Clientes/crear-suscripcion/crear-suscripcion.component").then(m => m.CrearSuscripcionComponent),
   },
 

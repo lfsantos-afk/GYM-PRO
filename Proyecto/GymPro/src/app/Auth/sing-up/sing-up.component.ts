@@ -36,14 +36,14 @@ export class SingUpComponent {
       return;
     }
     const cliente: Cliente = {
-      password: this.form.get("password")?.value,
+      Password: this.form.get("password")?.value,
       email: this.form.get("email")?.value,
-      nombre: this.form.get("nombre")?.value,
-      apellido: this.form.get("apellido")?.value,
-      telefono: this.form.get("telefono")?.value,
-      direccion: this.form.get("direccion")?.value,
+      Nombre: this.form.get("nombre")?.value,
+      Apellido: this.form.get("apellido")?.value,
+      Telefono: this.form.get("telefono")?.value,
+      Direccion: this.form.get("direccion")?.value,
       id: "0",
-      userId: ""
+      UserId: ""
     }
     const r = await this.serv.RegistrarCliente(cliente);
     if (r == null) {
