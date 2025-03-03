@@ -164,7 +164,7 @@
           <button type="button"
                   (click)="toggleUserMenu()"
                   class="flex items-center gap-2 text-sm px-3 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-white transition-colors duration-200">
-            @let LetrasImage = role == Roles.Client ? clienteActual?.Nombre + "+" + clienteActual?.Apellido : "Admin+User";
+            @let LetrasImage = role == Roles.Client ? clienteActual ? clienteActual?.Nombre + "+" + clienteActual?.Apellido : "Cliente+Gympro" : "Admin+User";
             <img class="w-8 h-8 rounded-full"
                  src="https://ui-avatars.com/api/?name={{LetrasImage}}&background=0D8ABC&color=fff"
                  alt="Avatar de usuario">
@@ -182,7 +182,7 @@
               <div class="px-4 py-3 border-b border-gray-700">
                 <p class="text-sm text-gray-300">Conectado como</p>
                 <p
-                  class="text-sm font-medium text-white truncate">{{ (role == Roles.Client ? "Cliente - " + clienteActual?.Nombre : "Administrador") }}</p>
+                  class="text-sm font-medium text-white truncate">{{ (role == Roles.Client ? "Cliente " : "Administrador") }}</p>
               </div>
 
               @if (role == Roles.Client) {
@@ -285,7 +285,8 @@
 
         @if (role == Roles.Admin) {
           <li>
-            <button [routerLink]="Rutas.ClientesAdmin " routerLinkActive="text-blue-500 bg-gray-800 active-link active-link"
+            <button [routerLink]="Rutas.ClientesAdmin "
+                    routerLinkActive="text-blue-500 bg-gray-800 active-link active-link"
                     class="block py-2 px-3 text-white rounded hover:bg-gray-800 hover:text-blue-500 transition-colors duration-200">
               Clientes
             </button>
