@@ -3,9 +3,9 @@
     @for (membresia of membresias; track membresia.id) {
       <div
         class="relative bg-gray-800 shadow-xl rounded-xl overflow-hidden transition-all duration-300 hover:translate-y-1 hover:shadow-indigo-500/20 p-8
-        {{clienteActualMembresias?.includes(membresia.id.toString()) ? 'border-2 border-green-500 shadow-green-500/20' : ''}}">
+        {{clienteActualMembresias?.includes (membresia.id.toString()) ? 'border-2 border-green-500 shadow-green-500/20' : ''}}">
 
-        @if (clienteActualMembresias?.includes(membresia.id.toString())) {
+        @if (clienteActualMembresias?.includes (membresia.id.toString())) {
           <div class="absolute top-4 right-4 bg-green-500 text-xs font-bold text-white px-2 py-1 rounded-full">
             ACTIVA
           </div>
@@ -61,6 +61,15 @@
               </button>
             }
           }
+          @else{
+            <button
+            [routerLink]="[Rutas.AdquirirSuscripcion,membresia.id]"
+              class="w-full py-3 bg-gradient-to-r from-indigo-500 to-blue-400 text-white font-medium rounded-lg
+            hover:from-indigo-400 hover:to-blue-300 transition-all duration-300 disabled:from-gray-700
+             text-center inline-block">
+              Elegir plan
+            </button>
+          }
         } @else {
           <button
             class="w-full py-3 bg-gradient-to-r from-indigo-500 to-blue-400 text-white font-medium rounded-lg
