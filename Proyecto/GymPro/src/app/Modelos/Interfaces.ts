@@ -35,16 +35,6 @@ export class Membresia {
   publicoObjectivo!: string;
 }
 
-// export  interface Membresia {
-//   id: number
-//   Nombre: string
-//   Descripcion: string
-//   DuracionMeses: number
-//   Precio: number
-//   Activa: boolean
-//   publicoObjectivo: string
-// }
-
 
 export interface Suscripcion {
   id: number

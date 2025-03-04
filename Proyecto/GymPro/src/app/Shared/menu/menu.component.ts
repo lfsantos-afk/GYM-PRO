@@ -50,6 +50,7 @@ export class MenuComponent implements OnInit {
   }
 
   async btnLogin() {
+    this.userMenuOpen = false;
     if (this.role !== null) {
       const result = await this.authServicio.CerrarSeccion();
       if (result) {

@@ -22,6 +22,8 @@ export class ClientesComponent implements OnInit {
   mostrarHistorial = false;
   SuscripcionesCliente: Suscripcion[] = [];
   NombreCliente: string = "";
+  clientesFiltrados: ClientesAdmin[] = [];
+  filtro: string = "";
 
   constructor(private adminServicio: AdministradorServicio,
               private notificar: NotificacionServicio,
@@ -32,6 +34,7 @@ export class ClientesComponent implements OnInit {
     const result = await this.adminServicio.ObtenerClientes();
     if (result.clientes != null) {
       this.clientes = result.clientes;
+      this.clientesFiltrados = this.clientes;
     } else {
       this.notificar.NotificarError("Error al obtener los clientes.");
     }
@@ -43,6 +46,22 @@ export class ClientesComponent implements OnInit {
     this.SuscripcionesCliente = result.Suscripciones;
     this.mostrarHistorial = true;
 
+  }
+
+  filtrarClientes(): void {
+    if (!this.filtro.trim()) {
+      this.clientesFiltrados = [...this.clientes];
+      return;
+    }
+
+    const term = this.filtro.toLowerCase().trim();
+    this.clientesFiltrados = this.clientes.filter(cliente =>
+      cliente.Nombre.toLowerCase().includes(term) ||
+      cliente.Apellido.toLowerCase().includes(term) ||
+      cliente.id.toString().includes(term) ||
+      (cliente.Telefono && cliente.Telefono.includes(term)) ||
+      (cliente.Direccion && cliente.Direccion.toLowerCase().includes(term))
+    );
   }
 
   OcultarMostrarHistorial(): void {
