@@ -20,6 +20,7 @@ export class ClienteServicio {
       .from('Suscripciones')
       .select('*,Membresias(*)')
       .eq("ClienteId", clienteId) as { data: Suscripcion[], error: any };
+    Suscripciones = Suscripciones ?? [];
     return {Suscripciones, error};
 
   }
@@ -64,7 +65,7 @@ export class ClienteServicio {
 
   }
 
-  async HacerPago(SuscripcionId: string, monto: number) {
+  async HacerPago(SuscripcionId: string, monto: number, metodo : string) {
     let devolver: string | null = null;
     const {data, error} = await this.supabase
       .from('Pagos')
@@ -72,7 +73,7 @@ export class ClienteServicio {
         {
           "SubscripcionId": SuscripcionId,
           "Monto": monto,
-          "metodo": "en linea",
+          "metodo": metodo,
           "Estatus": "completado"
         },
       ).select("*,Suscripciones(id, Membresias(id,Precio))") as { data: Pago[], error: any };
@@ -84,8 +85,6 @@ export class ClienteServicio {
         .eq('id', data?.[0].Suscripciones.id)
         .select() as { data: Suscripcion[], error: any };
       devolver = resultSuscripciones?.error?.message ?? null;
-      console.info("resultado de actualizar suscripcion", resultSuscripciones.data);
-      console.error(resultSuscripciones.error);
     } else {
       devolver = error?.message ?? null;
     }

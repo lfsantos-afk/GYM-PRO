@@ -46,7 +46,8 @@ export class HistorialComponent implements OnInit {
     { nombre: 'Todas', valor: 'todas' },
     { nombre: 'Activas', valor: EstadoSuscripcion.Activa },
     { nombre: 'Canceladas', valor: EstadoSuscripcion.Cancelada },
-    { nombre: 'Pendientes de pago', valor: EstadoSuscripcion.FaltaPago }
+    { nombre: 'Pendientes de pago', valor: EstadoSuscripcion.FaltaPago },
+    { nombre: 'Activas-CANCELADAS', valor: EstadoSuscripcion.ActivaCancelada }
   ];
   get suscripcionesFiltradas(): Suscripcion[] {
     if (this.filtroActual === 'todas') {

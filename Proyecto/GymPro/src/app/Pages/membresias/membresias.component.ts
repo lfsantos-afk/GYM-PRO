@@ -74,7 +74,10 @@ export class MembresiasComponent implements OnInit {
     const clienteActual = await this.authServicio.ObtenerClienteActual();
     if (clienteActual.cliente !== null) {
       const resultado = await this.clienteServicio.ObtenerSuscripcionesCliente(clienteActual.cliente?.id);
-      this.clienteActualMembresias = resultado.Suscripciones.filter(x => x.Estatus == EstadoSuscripcion.Activa || x.Estatus == EstadoSuscripcion.ActivaCancelada).map(x => x.MembresiaId.toString());
+      this.clienteActualMembresias = resultado.Suscripciones?.filter(x =>
+        x.Estatus == EstadoSuscripcion.Activa ||
+        x.Estatus == EstadoSuscripcion.ActivaCancelada)
+        ?.map(x => x.MembresiaId.toString()) ?? [];
     }
   }
 
