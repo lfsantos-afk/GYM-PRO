@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {Rutas, AuthRutas} from 'Constantes/Constantes';
 import {AuthServicio} from '../../Auth/AuthServicio';
 import {NotificacionServicio} from 'Servicios/NotificacionServicio';
 import {Roles} from 'Constantes/Roles';
+import {Cliente} from 'Modelos/Interfaces';
 
 @Component({
   selector: 'app-menu',
@@ -14,19 +15,34 @@ import {Roles} from 'Constantes/Roles';
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
+  private authServicio = inject(AuthServicio);
+  private router = inject(Router);
+  private notificacionServicio = inject(NotificacionServicio);
   role: string | null = null;
 
-  protected readonly Rutas = Rutas;
   MenuAbierto: boolean = false;
-  protected  readonly  Roles = Roles;
+  clienteActual: Cliente | null = null;
 
-  constructor(private authServicio: AuthServicio,
-              private router: Router,
-              private notificacionServicio: NotificacionServicio) {
+  constructor() {
     this.authServicio.usuarioRolAction.subscribe(usuario =>
       this.role = usuario
     );
+    this.authServicio.ObtenerClienteActual().then(x => {
+      this.clienteActual = x.cliente;
+    })
+  }
+
+  async ngOnInit() {
+    const resultClienteActual = await this.authServicio.ObtenerClienteActual();
+    this.clienteActual = resultClienteActual.cliente;
+  }
+
+  userMenuOpen: boolean = false;
+
+
+  toggleUserMenu(): void {
+    this.userMenuOpen = !this.userMenuOpen;
   }
 
   BotonMenu() {
@@ -34,6 +50,7 @@ export class MenuComponent {
   }
 
   async btnLogin() {
+    this.userMenuOpen = false;
     if (this.role !== null) {
       const result = await this.authServicio.CerrarSeccion();
       if (result) {
@@ -46,4 +63,9 @@ export class MenuComponent {
       await this.router.navigate([AuthRutas.LogIn]);
     }
   }
+
+  protected readonly Rutas = Rutas;
+
+  protected readonly Roles = Roles;
+
 }

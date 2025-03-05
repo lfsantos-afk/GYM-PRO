@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Membresia} from 'Modelos/Interfaces';
 import {MembresiaServicio} from 'Servicios/MembresiaServicio';
 import {NotificacionServicio} from 'Servicios/NotificacionServicio';
-import {Rutas} from 'Constantes/Constantes';
+import {EstadoSuscripcion, Rutas} from 'Constantes/Constantes';
 import {AuthServicio} from '../../Auth/AuthServicio';
 import {Roles} from 'Constantes/Roles';
 import {Router, RouterLink} from '@angular/router';
@@ -19,7 +19,8 @@ import {ClienteServicio} from 'Servicios/ClienteServicio';
 export class MembresiasComponent implements OnInit {
   membresias: Membresia[] = [];
   role: string | null = null;
-  clienteActualMembresias: string[] | null = null;
+  clienteActualMembresias: string[] = [];
+
 
   constructor(private membresiaServ: MembresiaServicio,
               private NotificacionServ: NotificacionServicio,
@@ -46,9 +47,6 @@ export class MembresiasComponent implements OnInit {
     }
   }
 
-  IrComprar(id: number) {
-    this.router.navigate([Rutas.AdquirirSuscripcion, id.toString()]);
-  }
 
   ObtenerTiempoMembresia(membresia: Membresia) {
 
@@ -76,7 +74,7 @@ export class MembresiasComponent implements OnInit {
     const clienteActual = await this.authServicio.ObtenerClienteActual();
     if (clienteActual.cliente !== null) {
       const resultado = await this.clienteServicio.ObtenerSuscripcionesCliente(clienteActual.cliente?.id);
-      this.clienteActualMembresias = resultado.Suscripciones.map(x => x.MembresiaId.toString());
+      this.clienteActualMembresias = resultado.Suscripciones.filter(x => x.Estatus == EstadoSuscripcion.Activa || x.Estatus == EstadoSuscripcion.ActivaCancelada).map(x => x.MembresiaId.toString());
     }
   }
 

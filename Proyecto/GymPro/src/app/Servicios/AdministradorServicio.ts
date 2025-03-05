@@ -24,6 +24,7 @@ export class AdministradorServicio {
     let {data: Suscripciones, error} = await this.supabase
       .from('Suscripciones')
       .select('*,Membresias(*)') as { data: Suscripcion[], error: any };
+    console.info('ObtenerSuscripciones', Suscripciones);
     return {Suscripciones, error};
   }
 }
