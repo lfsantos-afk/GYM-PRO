@@ -65,7 +65,7 @@ export class ClienteServicio {
 
   }
 
-  async HacerPago(SuscripcionId: string, monto: number, metodo : string) {
+  async HacerPago(SuscripcionId: string, monto: number, metodo: string) {
     let devolver: string | null = null;
     const {data, error} = await this.supabase
       .from('Pagos')
@@ -89,6 +89,14 @@ export class ClienteServicio {
       devolver = error?.message ?? null;
     }
     return devolver;
+  }
+
+  async CancelarSuscripcion(suscripcionId: number) {
+    const {data, error} = await this.supabase
+      .from('Suscripciones')
+      .update({"Estatus": EstadoSuscripcion.ActivaCancelada})
+      .eq('id', suscripcionId).select();
+    return error === null;
   }
 }
 

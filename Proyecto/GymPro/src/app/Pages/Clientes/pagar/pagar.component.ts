@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Suscripcion} from 'Modelos/Interfaces';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {NotificacionServicio} from 'Servicios/NotificacionServicio';
 import {EstadoSuscripcion, Rutas} from 'Constantes/Constantes';
 import {ClienteServicio} from 'Servicios/ClienteServicio';
@@ -23,7 +23,8 @@ export interface DatosAprobados {
     NgxPayPalModule,
     CurrencyPipe,
     DatePipe,
-    NgClass
+    NgClass,
+    RouterLink
   ],
   templateUrl: './pagar.component.html',
   styleUrl: './pagar.component.css'
@@ -125,4 +126,5 @@ export class PagarComponent implements OnInit {
   }
 
   protected readonly EstadoSuscripcion = EstadoSuscripcion;
+  protected readonly Rutas = Rutas;
 }
