@@ -3,6 +3,6 @@
 }
 
 .active-link {
-  @apply text-white  md:bg-transparent decoration-blue-700 md:p-0 underline underline-offset-8 ;
+  @apply text-white  md:bg-transparent decoration-blue-700 underline underline-offset-8 ;
 }
 
