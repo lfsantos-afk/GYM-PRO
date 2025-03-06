@@ -143,6 +143,20 @@ export class AuthServicio {
     return resultado;
   }
 
+
+  async CambiarPassword(password: string) {
+    const {data, error} = await this.supabase.auth.updateUser({
+      password: password
+    });
+
+    return error === null ?
+      null : error.message === 'New password should be different from the old password.' ?
+        'La nueva contraseña debe ser diferente' :
+        'Algo salio mal al cambiar la contraseña 📌';
+
+
+  }
+
   async CerrarSeccion() {
     this.rolUsuario.next(null);
     return await this.supabase.auth.signOut();

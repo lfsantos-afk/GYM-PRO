@@ -1,159 +1,123 @@
-<div class="min-h-screen bg-gray-900 text-gray-200">
-
-
-  <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-    <!-- Encabezado de perfil -->
-    <div class="bg-gray-800 shadow overflow-hidden sm:rounded-lg mb-6 border border-gray-700">
-      <div class="px-4 py-5 sm:px-6 flex justify-between">
-        <div>
-          <h3 class="text-lg leading-6 font-medium text-gray-100">Perfil de Usuario</h3>
-          <p class="mt-1 max-w-2xl text-sm text-gray-400">Información personal y membresías</p>
-        </div>
-        <div>
-          <button
-            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 focus:ring-offset-gray-800">
-            Editar Perfil
-          </button>
-        </div>
-      </div>
-
-      @if (cliente) {
-        <div class="border-t border-gray-700">
-          <dl>
-            <div class="bg-gray-700 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-400">Nombre completo</dt>
-              <dd
-                class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">{{ cliente.Nombre | titlecase }}{{ cliente.Apellido }}
-              </dd>
-            </div>
-            <div class="bg-gray-800 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-400">Email</dt>
-              <dd class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">{{ cliente.email }}</dd>
-            </div>
-            <div class="bg-gray-700 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-400">Teléfono</dt>
-              <dd class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">{{ cliente.Telefono }}</dd>
-            </div>
-            <div class="bg-gray-800 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-400">Dirección</dt>
-              <dd class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">{{ cliente.Direccion }}</dd>
-            </div>
-          </dl>
-        </div>
-
-      } @else {
-        <div class="text-center py-8">
-          <p class="text-gray-400">Cargando información del cliente...</p>
-        </div>
-      }
-    </div>
-
-    <!-- Sección de membresías -->
-    <h2 class="text-xl font-semibold text-gray-100 mb-4">Tus Membresías</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-
-      @for (sus of Suscripciones; track $index) {
-        @let colorEstado = sus.Estatus == EstadoSuscripcion.Activa ? "green-500" : sus.Estatus == EstadoSuscripcion.ActivaCancelada || sus.Estatus == EstadoSuscripcion.FaltaPago ? "orange-300" : "red-900";
-        <div
-          class="bg-gray-800 rounded-lg shadow-lg overflow-hidden border-t-4 border-{{ colorEstado }}">
-          <div class="p-5">
-            <div class="flex justify-between items-center mb-3">
-              <h3 class="text-lg font-semibold text-gray-100">{{ sus.Membresias.Nombre }}</h3>
-              <span
-                class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-{{ colorEstado }}">Activa</span>
-            </div>
-            @for (beneficio of sus.Membresias.Descripcion.slice(0, -1).split('.'); track $index) {
-              <p class="text-gray-400 mb-4">{{ beneficio }}</p>
-              <li class="flex items-center">
-                <span class="text-indigo-500 dark:text-indigo-400 mr-2">✓</span>{{ beneficio }}
-              </li>
-            }
-            <div class="flex justify-between text-sm text-gray-400 mb-4">
-              <span>Inicio: {{ sus.Inicia | date : "dd/mm/yyyy" }}</span>
-              <span>Vence:  {{ sus.Finaliza | date : "dd/mm/yyyy" }}</span>
-            </div>
-            <div class="mt-4 flex justify-between">
-              <button class="text-purple-400 hover:text-purple-300 text-sm font-medium">Ver detalles</button>
-            </div>
+<div class="min-h-screen bg-gray-900 text-gray-200 pt-20 p-6">
+  @if (cambiarPassword) {
+    <app-password (volver)="CerrarSubMenu()"></app-password>
+  } @else {
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <!-- Encabezado de perfil -->
+      <div class="bg-gray-800 shadow overflow-hidden sm:rounded-lg mb-6 border border-gray-700">
+        <div class="px-4 py-5 sm:px-6 flex justify-between">
+          <div>
+            <h3 class="text-lg leading-6 font-medium text-gray-100">Perfil de Usuario</h3>
+            <p class="mt-1 max-w-2xl text-sm text-gray-400">Información personal y membresías</p>
+          </div>
+          <div>
+            <button
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 focus:ring-offset-gray-800">
+              Editar Perfil
+            </button>
           </div>
         </div>
 
-      }
-      <!--      &lt;!&ndash; Membresía Activa &ndash;&gt;-->
-      <!--      <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden border-t-4 border-green-500 border border-gray-700">-->
-      <!--        <div class="p-5">-->
-      <!--          <div class="flex justify-between items-center mb-3">-->
-      <!--            <h3 class="text-lg font-semibold text-gray-100">Plan Premium</h3>-->
-      <!--            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-300">Activa</span>-->
-      <!--          </div>-->
-      <!--          <p class="text-gray-400 mb-4">Acceso a todas las instalaciones y clases</p>-->
-      <!--          <div class="flex justify-between text-sm text-gray-400 mb-4">-->
-      <!--            <span>Inicio: 15/01/2025</span>-->
-      <!--            <span>Vence: 15/04/2025</span>-->
-      <!--          </div>-->
-      <!--          <div class="mt-4 flex justify-between">-->
-      <!--            <button class="text-purple-400 hover:text-purple-300 text-sm font-medium">Ver detalles</button>-->
-      <!--            <button class="text-purple-400 hover:text-purple-300 text-sm font-medium">Renovar</button>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
+        @if (cliente) {
+          <div class="border-t border-gray-700">
+            <dl>
+              <div class="bg-gray-700 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-400">Nombre completo</dt>
+                <dd
+                  class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">{{ cliente.Nombre | titlecase }}{{ cliente.Apellido }}
+                </dd>
+              </div>
+              <div class="bg-gray-800 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-400">Email</dt>
+                <dd class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">{{ cliente.email }}</dd>
+              </div>
+              <div class="bg-gray-700 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-400">Teléfono</dt>
+                <dd class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">{{ cliente.Telefono }}</dd>
+              </div>
+              <div class="bg-gray-800 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-400">Dirección</dt>
+                <dd class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">{{ cliente.Direccion }}</dd>
+              </div>
+            </dl>
+          </div>
 
-      <!--      &lt;!&ndash; Membresía Histórica &ndash;&gt;-->
-      <!--      <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden border-t-4 border-gray-500 border border-gray-700">-->
-      <!--        <div class="p-5">-->
-      <!--          <div class="flex justify-between items-center mb-3">-->
-      <!--            <h3 class="text-lg font-semibold text-gray-100">Plan Básico</h3>-->
-      <!--            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-700 text-gray-300">Expirada</span>-->
-      <!--          </div>-->
-      <!--          <p class="text-gray-400 mb-4">Acceso a sala de musculación</p>-->
-      <!--          <div class="flex justify-between text-sm text-gray-400 mb-4">-->
-      <!--            <span>Inicio: 15/10/2024</span>-->
-      <!--            <span>Venció: 15/01/2025</span>-->
-      <!--          </div>-->
-      <!--          <div class="mt-4">-->
-      <!--            <button class="text-purple-400 hover:text-purple-300 text-sm font-medium">Ver detalles</button>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
+        } @else {
+          <div class="text-center py-8">
+            <p class="text-gray-400">Cargando información del cliente...</p>
+          </div>
+        }
+      </div>
 
+      <!-- Sección de membresías -->
+      <h2 class="text-xl font-semibold text-gray-100 mb-4">Tus Membresías</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
 
-    </div>
+        @for (sus of Suscripciones; track $index) {
+          @let colorEstado = sus.Estatus == EstadoSuscripcion.Activa ? "green-500" : sus.Estatus == EstadoSuscripcion.ActivaCancelada || sus.Estatus == EstadoSuscripcion.FaltaPago ? "orange-300" : "red-900";
+          <div
+            class="bg-gray-800 rounded-lg shadow-lg overflow-hidden border-t-4 border-{{ colorEstado }}">
+            <div class="p-5">
+              <div class="flex justify-between items-center mb-3">
+                <h3 class="text-lg font-semibold text-gray-100">{{ sus.Membresias.Nombre }}</h3>
+                <span
+                  class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-{{ colorEstado }}">Activa</span>
+              </div>
+              @for (beneficio of sus.Membresias.Descripcion.slice(0, -1).split('.'); track $index) {
+                <p class="text-gray-400 mb-4">{{ beneficio }}</p>
+                <li class="flex items-center">
+                  <span class="text-indigo-500 dark:text-indigo-400 mr-2">✓</span>{{ beneficio }}
+                </li>
+              }
+              <div class="flex justify-between text-sm text-gray-400 mb-4">
+                <span>Inicio: {{ sus.Inicia | date : "dd/mm/yyyy" }}</span>
+                <span>Vence:  {{ sus.Finaliza | date : "dd/mm/yyyy" }}</span>
+              </div>
 
-    <!-- Más acciones -->
-    <div class="bg-gray-800 shadow-lg rounded-lg p-6 border border-gray-700">
-      <h3 class="text-lg font-medium text-gray-100 mb-4">Acciones de cuenta</h3>
-      <div class="space-y-4">
-        <div>
-          <button class="text-gray-300 hover:text-gray-100 text-sm font-medium flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-            </svg>
-            Cambiar contraseña
-          </button>
-        </div>
-        <div>
-          <button class="text-gray-300 hover:text-gray-100 text-sm font-medium flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-            </svg>
-            Suspender membresía
-          </button>
-        </div>
-        <div>
-          <button class="text-red-400 hover:text-red-300 text-sm font-medium flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-red-400" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-            </svg>
-            Eliminar cuenta
-          </button>
+            </div>
+          </div>
+
+        }
+
+      </div>
+
+      <!-- Más acciones -->
+      <div class="bg-gray-800 shadow-lg rounded-lg p-6 border border-gray-700">
+        <h3 class="text-lg font-medium text-gray-100 mb-4">Acciones de cuenta</h3>
+        <div class="space-y-4">
+          <div>
+            <button (click)="cambiarContrasena()" class="text-gray-300 hover:text-gray-100 text-sm font-medium flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24"
+                   stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
+              Cambiar contraseña
+            </button>
+          </div>
+          <div>
+            <button class="text-gray-300 hover:text-gray-100 text-sm font-medium flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24"
+                   stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              </svg>
+              Suspender membresía
+            </button>
+          </div>
+          <div>
+            <button class="text-red-400 hover:text-red-300 text-sm font-medium flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-red-400" fill="none" viewBox="0 0 24 24"
+                   stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              </svg>
+              Eliminar cuenta
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
+  }
 </div>
