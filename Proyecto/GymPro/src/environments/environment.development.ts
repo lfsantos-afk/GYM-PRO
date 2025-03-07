@@ -1,7 +1,10 @@
 export const environment = {
   Production: false,
   SupabaseUrl : "https://yoowpsjdyiuylgpfphae.supabase.co",
-  SupabaseKey : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlvb3dwc2pkeWl1eWxncGZwaGFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzcyMTMxNDEsImV4cCI6MjA1Mjc4OTE0MX0.eA5OXPLLeFhJhumF0LgTOxPWCZ1m89TGBTmrIh7NjGU"
+  SupabaseKey : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlvb3dwc2pkeWl1eWxncGZwaGFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzcyMTMxNDEsImV4cCI6MjA1Mjc4OTE0MX0.eA5OXPLLeFhJhumF0LgTOxPWCZ1m89TGBTmrIh7NjGU",
+  SupabaseAdminKey : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlvb3dwc2pkeWl1eWxncGZwaGFlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczNzIxMzE0MSwiZXhwIjoyMDUyNzg5MTQxfQ.W-yN2GslBwwJhQLORBsNAXnSQpX7s0BRpgdWxOEm018",
+
+
 
 
 };

@@ -4,8 +4,9 @@ import {AuthServicio} from '../../../Auth/AuthServicio';
 import {Cliente, Suscripcion} from 'Modelos/Interfaces';
 import {NotificacionServicio} from 'Servicios/NotificacionServicio';
 import {DatePipe, JsonPipe, TitleCasePipe} from '@angular/common';
-import {EstadoSuscripcion} from 'Constantes/Constantes';
+import {AuthRutas, EstadoSuscripcion} from 'Constantes/Constantes';
 import {PasswordComponent} from '../GestionPerfil/password/password.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -21,6 +22,7 @@ export class PerfilComponent implements OnInit {
   private authServ = inject(AuthServicio);
   private clienteServ = inject(ClienteServicio);
   private notificar = inject(NotificacionServicio);
+  private router = inject(Router);
   cliente: Cliente | null = null;
   Suscripciones: Suscripcion[] = [];
   cambiarPassword = false;
@@ -42,35 +44,27 @@ export class PerfilComponent implements OnInit {
   }
 
 
-  editarPerfil()
-    :
-    void {
+  editarPerfil() {
     // Lógica para editar perfil
     console.log('Editar perfil');
   }
 
-  cambiarContrasena()
-    :
-    void {
+  cambiarContrasena() {
     this.cambiarPassword = true;
-    // Lógica para cambiar contraseña
-    console.log('Cambiar contraseña');
   }
 
-  suspenderMembresia()
-    :
-    void {
-    // Lógica para suspender membresía
-    console.log('Suspender membresía');
-  }
 
-  eliminarCuenta()
-    :
-    void {
+  async eliminarCuenta() {
     if (confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.')
     ) {
-      // Lógica para eliminar cuenta
-      console.log('Eliminar cuenta');
+      const result = await this.authServ.EliminarCuenta();
+      if (result) {
+        await this.authServ.CerrarSeccion();
+        await this.router.navigate([AuthRutas.LogIn]);
+        this.notificar.NotificarBien("Cuenta eliminada");
+      } else {
+        this.notificar.NotificarError("Algo salio mal al eliminar tu cuenta");
+      }
     }
   }
 

@@ -14,12 +14,15 @@ export function rolesGuard(rolesPermitidos: string[]): CanActivateFn {
     authService.usuarioRolAction.subscribe(userRole => {
       role = userRole ?? '';
     })
-    if (route.routeConfig?.path === "auth" && role !== "") {
-      return false;
-    } else if (route.routeConfig?.path === "auth" && role === "") {
+    // if (route.routeConfig?.path === "auth" && role !== "") {
+    //   return false;
+    // } else if (route.routeConfig?.path === "auth" && role === "") {
+    //   return true;
+    // }
+
+    if (route.routeConfig?.path === "auth" && role === "") {
       return true;
     }
-
     seguir = rolesPermitidos.includes(role);
     if (!seguir) {
       router.navigate([Rutas.AccesoDenegado]).then(x => true);
