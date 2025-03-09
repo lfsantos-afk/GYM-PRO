@@ -71,9 +71,7 @@
           >
           @if ( f['nombre'].errors) {
             <div class="text-red-400 text-sm mt-1">
-              @if (f['nombre'].errors?.['required']) {
                 <div>El nombre es obligatorio</div>
-              }
             </div>
           }
         </div>
@@ -108,9 +106,7 @@
           >
           @if ( f['publicoObjectivo'].errors) {
             <div class="text-red-400 text-sm mt-1">
-              @if (f['publicoObjectivo'].errors?.['required']) {
                 <div>El público objetivo es obligatorio</div>
-              }
             </div>
           }
         </div>
@@ -130,9 +126,7 @@
             >
             @if ( f['duracionMeses'].errors) {
               <div class="text-red-400 text-sm mt-1">
-                @if (f['duracionMeses'].errors?.['required']) {
                   <div>La duración es obligatoria</div>
-                }
               </div>
             }
           </div>
