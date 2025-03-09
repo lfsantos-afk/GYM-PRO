@@ -81,19 +81,6 @@ export class AdministradorServicio {
       guardados[estado].cantidad++;
       return guardados;
     }, {});
-    // const resultSuscripciones = suscripciones.reduce<{
-    //   [key: number]: { cantidad: number, nombre: string }
-    // }>((guardados, actual) => {
-    //   const membresiaId = actual.MembresiaId;
-    //   if (!guardados[membresiaId]) {
-    //     guardados[membresiaId] = {
-    //       cantidad: 0,
-    //       nombre: actual.Membresias.Nombre
-    //     }
-    //   }
-    //   guardados[membresiaId].cantidad++;
-    //   return guardados;
-    // }, {});
 
 
     const resultPagos = pagos.reduce<{

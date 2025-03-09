@@ -1,201 +1,4 @@
-<!--<div class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-20">-->
-<!--  &lt;!&ndash; Encabezado &ndash;&gt;-->
-<!--  <header class="sticky top-0 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-sm border-b border-gray-800 z-10">-->
-<!--    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">-->
-<!--      <div class="flex justify-between items-center">-->
-<!--        <div class="flex items-center">-->
-<!--          <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center mr-3">-->
-<!--            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"-->
-<!--                 stroke="currentColor">-->
-<!--              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>-->
-<!--            </svg>-->
-<!--          </div>-->
-<!--          <h1 class="text-xl font-bold text-white">Dashboard Analytics</h1>-->
-<!--        </div>-->
 
-<!--      </div>-->
-<!--    </div>-->
-<!--  </header>-->
-
-<!--  &lt;!&ndash; Conteido&ndash;&gt;-->
-<!--  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">-->
-<!--    &lt;!&ndash;    Card de informacion rapida&ndash;&gt;-->
-<!--    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">-->
-<!--      <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 shadow-lg">-->
-<!--        <div class="flex justify-between">-->
-<!--          <div>-->
-<!--            <p class="text-blue-100 text-sm">Total de Suscripciones</p>-->
-<!--            <h3 class="text-3xl font-bold text-white mt-1">{{ datos.totalSuscripciones }}</h3>-->
-<!--          </div>-->
-<!--          <div class="bg-white bg-opacity-20 p-3 rounded-lg">-->
-<!--            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"-->
-<!--                 stroke="currentColor">-->
-<!--              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>-->
-<!--            </svg>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 shadow-lg">-->
-<!--        <div class="flex justify-between">-->
-<!--          <div>-->
-<!--            <p class="text-purple-100 text-sm">Ingresos Ultimo Mes</p>-->
-<!--            <h3 class="text-3xl font-bold text-white mt-1">$24,500</h3>-->
-<!--          </div>-->
-<!--          <div class="bg-white bg-opacity-20 p-3 rounded-lg">-->
-<!--            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"-->
-<!--                 stroke="currentColor">-->
-<!--              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>-->
-<!--            </svg>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-xl p-6 shadow-lg">-->
-<!--        <div class="flex justify-between">-->
-<!--          <div>-->
-<!--            <p class="text-green-100 text-sm">Total Ingresos</p>-->
-<!--            <h3-->
-<!--              class="text-3xl font-bold text-white mt-1">{{ datos.TotalPagado | currency : 'USD':'symbol-narrow':'1.0-0' }}</h3>-->
-<!--          </div>-->
-<!--          <div class="bg-white bg-opacity-20 p-3 rounded-lg">-->
-<!--            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"-->
-<!--                 stroke="currentColor">-->
-<!--              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>-->
-<!--            </svg>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="bg-gradient-to-r from-yellow-500 to-red-500 rounded-xl p-6 shadow-lg">-->
-<!--        <div class="flex justify-between">-->
-<!--          <div>-->
-<!--            <p class="text-yellow-100 text-sm">Clientes registrados</p>-->
-<!--            <h3 class="text-3xl font-bold text-white mt-1">{{ datos.totalClientes }}</h3>-->
-<!--          </div>-->
-<!--          <div class="bg-white bg-opacity-15 p-3 rounded-lg">-->
-<!--            <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-8 w-8 text-white" viewBox="0 0 24 24"-->
-<!--                 stroke-width="1.5" stroke="currentColor">-->
-<!--              <path stroke-linecap="round" stroke-linejoin="round"-->
-<!--                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>-->
-<!--            </svg>-->
-
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="grid grid-cols-5 grid-rows-5 gap-4">-->
-<!--      <div class="col-span-3 row-span-3">-->
-<!--        <div class="bg-gray-800 bg-opacity-50 rounded-xl p-6 shadow-lg lg:col-span-2">-->
-<!--          <div class="flex justify-between items-center mb-6">-->
-<!--            <h3 class="text-xl font-bold">Evolución de Suscripciones</h3>-->
-
-<!--          </div>-->
-<!--          <div class="h-80">-->
-<!--            <p-chart type="line"-->
-<!--                     [data]="SuscripcionesMensuales"-->
-<!--                     [options]="OptionSuscripcionesSemanales"-->
-<!--                     width="100%"-->
-<!--                     height="100%">-->
-<!--            </p-chart>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="col-span-2 row-span-5 col-start-4">-->
-<!--        <div class="bg-gray-900 bg-opacity-70 rounded-2xl p-6 shadow-xl">-->
-<!--          <div class="flex justify-between items-center mb-6">-->
-<!--            <h3 class="text-xl font-bold text-white">Distribución por Estado Suscripción</h3>-->
-<!--            <button class="text-gray-300 hover:text-gray-100 transition-colors">-->
-<!--              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">-->
-<!--                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>-->
-<!--              </svg>-->
-<!--            </button>-->
-<!--          </div>-->
-
-<!--          &lt;!&ndash; Doughnut Chart - PrimeNG &ndash;&gt;-->
-<!--          <div class="flex justify-center">-->
-<!--            <p-chart type="doughnut"-->
-<!--                     [data]="EstadoSuscripciones"-->
-<!--                     [options]="OptionsEstadoSuscripciones"-->
-<!--                     width="80%"-->
-<!--                     height="80%">-->
-<!--            </p-chart>-->
-<!--          </div>-->
-
-<!--          <div class="mt-6 space-y-2">-->
-<!--            @for (suscripcion of datos.suscripcionesPorEstado; track $index) {-->
-<!--              <div class="flex justify-between items-center bg-gray-800 bg-opacity-50 rounded-lg p-3 hover:bg-gray-700 transition">-->
-<!--                <span class="text-gray-300 font-medium">{{suscripcion.nombre}}</span>-->
-<!--                <span class="text-blue-400 font-semibold">{{CalcularPorcientoSuscripciones(suscripcion.cantidad)}}%</span>-->
-<!--              </div>-->
-<!--            }-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--      </div>-->
-<!--      <div class="col-span-3 row-span-2 row-start-4">-->
-
-<!--        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">-->
-
-<!--          &lt;!&ndash; KPIs with Knobs &ndash;&gt;-->
-<!--          <div class=" hideen bg-gray-800 bg-opacity-50 rounded-xl p-6 shadow-lg lg:col-span-2">-->
-<!--            <div class="flex justify-between items-center mb-6">-->
-<!--              <h3 class="text-xl font-bold">Métricas de Rendimiento</h3>-->
-<!--            </div>-->
-<!--            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">-->
-<!--              &lt;!&ndash; KPI 1: Tasa de Retención &ndash;&gt;-->
-<!--              <div class="flex flex-col items-center">-->
-<!--                &lt;!&ndash; PrimeNG Knob component representation &ndash;&gt;-->
-<!--                <div class="relative flex items-center justify-center">-->
-<!--                  <div class="w-32 h-32 rounded-full border-8 border-gray-700 flex items-center justify-center">-->
-<!--                    <div class="absolute w-32 h-32 rounded-full border-8 border-blue-500"-->
-<!--                         style="clip: rect(0, 32px, 64px, 0); transform: rotate(55deg);"></div>-->
-<!--                    <span class="text-3xl font-bold">87%</span>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <h4 class="mt-4 text-lg font-medium">Retención</h4>-->
-<!--                <p class="text-sm text-gray-400">Tasa de retención mensual</p>-->
-<!--              </div>-->
-
-<!--              &lt;!&ndash; KPI 2: Satisfacción &ndash;&gt;-->
-<!--              <div class="flex flex-col items-center">-->
-<!--                &lt;!&ndash; PrimeNG Knob component representation &ndash;&gt;-->
-<!--                <div class="relative flex items-center justify-center">-->
-<!--                  <div class="w-32 h-32 rounded-full border-8 border-gray-700 flex items-center justify-center">-->
-<!--                    <div class="absolute w-32 h-32 rounded-full border-8 border-green-500"-->
-<!--                         style="clip: rect(0, 32px, 64px, 0); transform: rotate(72deg);"></div>-->
-<!--                    <span class="text-3xl font-bold">92%</span>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <h4 class="mt-4 text-lg font-medium">Satisfacción</h4>-->
-<!--                <p class="text-sm text-gray-400">Valoración promedio</p>-->
-<!--              </div>-->
-
-<!--              &lt;!&ndash; KPI 3: Crecimiento &ndash;&gt;-->
-<!--              <div class="flex flex-col items-center">-->
-<!--                &lt;!&ndash; PrimeNG Knob component representation &ndash;&gt;-->
-<!--                <div class="relative flex items-center justify-center">-->
-<!--                  <div class="w-32 h-32 rounded-full border-8 border-gray-700 flex items-center justify-center">-->
-<!--                    <div class="absolute w-32 h-32 rounded-full border-8 border-purple-500"-->
-<!--                         style="clip: rect(0, 32px, 64px, 0); transform: rotate(40deg);"></div>-->
-<!--                    <span class="text-3xl font-bold">12%</span>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <h4 class="mt-4 text-lg font-medium">Crecimiento</h4>-->
-<!--                <p class="text-sm text-gray-400">Incremento mensual</p>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--  </main>-->
-<!--</div>-->
 <div class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-20">
   <!-- Encabezado mejorado -->
   <header class="sticky top-0 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-sm border-b border-gray-800 z-10">
@@ -219,7 +22,7 @@
 
   <!-- Contenido principal -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Card de información rápida mejoradas -->
+    <!-- Card de información rápida -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       <!-- Card 1: Suscripciones -->
       <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-600/30 relative overflow-hidden">
@@ -240,24 +43,6 @@
         </div>
       </div>
 
-      <!-- Card 2: Ingresos -->
-      <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-600/30 relative overflow-hidden">
-        <div class="absolute -right-8 -top-8 w-24 h-24 bg-white/10 rounded-full"></div>
-        <div class="absolute -right-4 -bottom-8 w-16 h-16 bg-white/5 rounded-full"></div>
-        <div class="flex justify-between relative">
-          <div>
-            <p class="text-purple-100 text-sm">Ingresos Ultimo Mes</p>
-            <h3 class="text-3xl font-bold text-white mt-1">$24,500</h3>
-          </div>
-          <div class="bg-white bg-opacity-20 p-3 rounded-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-          </div>
-        </div>
-      </div>
 
       <!-- Card 3: Total Ingresos -->
       <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-600/30 relative overflow-hidden">
@@ -279,8 +64,7 @@
 
       <!-- Card 4: Clientes -->
       <div class="bg-gradient-to-r from-yellow-500 to-red-500 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-red-500/30 relative overflow-hidden">
-        <div class="absolute -right-8 -top-8 w-24 h-24 bg-white/10 rounded-full"></div>
-        <div class="absolute -right-4 -bottom-8 w-16 h-16 bg-white/5 rounded-full"></div>
+
         <div class="flex justify-between relative">
           <div>
             <p class="text-yellow-100 text-sm">Clientes registrados</p>
@@ -296,8 +80,7 @@
         </div>
       </div>
     </div>
-
-    <!-- Manteniendo la estructura original de grid -->
+<!--Grafico de suscipcione smensuales-->
     <div class="grid grid-cols-5 grid-rows-5 gap-4">
       <div class="col-span-3 row-span-3">
         <div class="bg-gray-800 bg-opacity-50 rounded-xl p-6 shadow-lg lg:col-span-2">
@@ -326,15 +109,6 @@
             </button>
           </div>
 
-          <!-- Gráfico de dona -->
-          <div class="flex justify-center">
-            <p-chart type="doughnut"
-                     [data]="EstadoSuscripciones"
-                     [options]="OptionsEstadoSuscripciones"
-                     width="80%"
-                     height="80%">
-            </p-chart>
-          </div>
 
           <!-- Lista de estados mejorada visualmente -->
           <div class="mt-6 space-y-2">
@@ -347,56 +121,7 @@
           </div>
         </div>
       </div>
-      <div class="col-span-3 row-span-2 row-start-4">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          <!-- KPIs con gráficos circulares -->
-          <div class="bg-gray-800 bg-opacity-50 rounded-xl p-6 shadow-lg lg:col-span-3">
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="text-xl font-bold">Métricas de Rendimiento</h3>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <!-- KPI 1: Tasa de Retención -->
-              <div class="flex flex-col items-center">
-                <div class="relative flex items-center justify-center">
-                  <div class="w-32 h-32 rounded-full border-8 border-gray-700 flex items-center justify-center">
-                    <div class="absolute w-32 h-32 rounded-full border-8 border-blue-500"
-                         style="clip: rect(0, 32px, 64px, 0); transform: rotate(55deg);"></div>
-                    <span class="text-3xl font-bold">87%</span>
-                  </div>
-                </div>
-                <h4 class="mt-4 text-lg font-medium">Retención</h4>
-                <p class="text-sm text-gray-400">Tasa de retención mensual</p>
-              </div>
 
-              <!-- KPI 2: Satisfacción -->
-              <div class="flex flex-col items-center">
-                <div class="relative flex items-center justify-center">
-                  <div class="w-32 h-32 rounded-full border-8 border-gray-700 flex items-center justify-center">
-                    <div class="absolute w-32 h-32 rounded-full border-8 border-green-500"
-                         style="clip: rect(0, 32px, 64px, 0); transform: rotate(72deg);"></div>
-                    <span class="text-3xl font-bold">92%</span>
-                  </div>
-                </div>
-                <h4 class="mt-4 text-lg font-medium">Satisfacción</h4>
-                <p class="text-sm text-gray-400">Valoración promedio</p>
-              </div>
-
-              <!-- KPI 3: Crecimiento -->
-              <div class="flex flex-col items-center">
-                <div class="relative flex items-center justify-center">
-                  <div class="w-32 h-32 rounded-full border-8 border-gray-700 flex items-center justify-center">
-                    <div class="absolute w-32 h-32 rounded-full border-8 border-purple-500"
-                         style="clip: rect(0, 32px, 64px, 0); transform: rotate(40deg);"></div>
-                    <span class="text-3xl font-bold">12%</span>
-                  </div>
-                </div>
-                <h4 class="mt-4 text-lg font-medium">Crecimiento</h4>
-                <p class="text-sm text-gray-400">Incremento mensual</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </main>
 </div>
