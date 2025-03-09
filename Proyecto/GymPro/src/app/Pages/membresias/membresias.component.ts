@@ -7,11 +7,15 @@ import {AuthServicio} from '../../Auth/AuthServicio';
 import {Roles} from 'Constantes/Roles';
 import {Router, RouterLink} from '@angular/router';
 import {ClienteServicio} from 'Servicios/ClienteServicio';
+import {AgregarComponent} from '../Admin/GestionMembresias/agregar/agregar.component';
+import {ActualizarComponent} from '../Admin/GestionMembresias/actualizar/actualizar.component';
 
 @Component({
   selector: 'app-membresias',
   imports: [
-    RouterLink
+    RouterLink,
+    AgregarComponent,
+    ActualizarComponent
   ],
   templateUrl: './membresias.component.html',
   styleUrl: './membresias.component.css'
@@ -20,6 +24,8 @@ export class MembresiasComponent implements OnInit {
   membresias: Membresia[] = [];
   role: string | null = null;
   clienteActualMembresias: string[] = [];
+  AgregarMembresia = false;
+  EditarMemebresia: Membresia | null = null;
 
 
   constructor(private membresiaServ: MembresiaServicio,
@@ -74,7 +80,10 @@ export class MembresiasComponent implements OnInit {
     const clienteActual = await this.authServicio.ObtenerClienteActual();
     if (clienteActual.cliente !== null) {
       const resultado = await this.clienteServicio.ObtenerSuscripcionesCliente(clienteActual.cliente?.id);
-      this.clienteActualMembresias = resultado.Suscripciones.filter(x => x.Estatus == EstadoSuscripcion.Activa || x.Estatus == EstadoSuscripcion.ActivaCancelada).map(x => x.MembresiaId.toString());
+      this.clienteActualMembresias = resultado.Suscripciones?.filter(x =>
+        x.Estatus == EstadoSuscripcion.Activa ||
+        x.Estatus == EstadoSuscripcion.ActivaCancelada)
+        ?.map(x => x.MembresiaId.toString()) ?? [];
     }
   }
 
@@ -83,4 +92,29 @@ export class MembresiasComponent implements OnInit {
   protected readonly Roles = Roles;
 
 
+  btnAgregarMembresia() {
+    this.AgregarMembresia = !this.AgregarMembresia;
+  }
+
+  async cambiosMembresias() {
+   this.btnVolver();
+
+    const result = await this.membresiaServ.ObtenerMembresias();
+
+    if (result.error === null) {
+      this.membresias = result.membresias ?? [];
+    } else {
+      this.NotificacionServ.NotificarError("Algo salio mal al obtener las membresias");
+    }
+  }
+
+  btnEditarMembresia(membresia: Membresia) {
+    this.EditarMemebresia = membresia;
+    this.AgregarMembresia = false;
+  }
+
+  btnVolver() {
+    this.EditarMemebresia = null;
+    this.AgregarMembresia = false;
+  }
 }

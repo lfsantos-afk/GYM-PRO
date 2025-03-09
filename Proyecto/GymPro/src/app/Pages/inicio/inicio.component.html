@@ -1,7 +1,6 @@
 <section
   class=" bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 text-white min-h-screen flex flex-col items-center justify-center text-center p-4 md:p-8">
-  <!-- Contenedor principal con animación de entrada -->
-  <div class="max-w-4xl mx-auto" [@fadeIn]="true">
+ <div class="max-w-4xl mx-auto" [@fadeIn]="true">
 
     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight">
       Bienvenido a <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300">GymPro</span>
@@ -44,10 +43,7 @@
         <i class="fas fa-arrow-right ml-2"></i>
       </button>
 
-      <button
-        class="bg-transparent hover:bg-white/10 text-white border-2 border-white/50 py-3 px-8 rounded-lg text-lg font-bold transition-all duration-300">
-        Visita Virtual
-      </button>
+
     </div>
 
     <div class="mt-16 pt-6 border-t border-blue-800">
@@ -62,11 +58,10 @@
     </div>
   </div>
 
-  <div class="absolute bottom-8 animate-bounce">
+  <div class="hidden absolute bottom-8 animate-bounce">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
     </svg>
-
     <i class="fas fa-chevron-down text-blue-400 text-2xl"></i>
   </div>
 

@@ -9,7 +9,6 @@ import {FormsModule} from '@angular/forms';
   selector: 'app-historial-cliente-admin',
   imports: [
     NgClass,
-    RouterLink,
     FormsModule
   ],
   templateUrl: './historial-cliente.component.html',

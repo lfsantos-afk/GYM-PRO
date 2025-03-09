@@ -27,62 +27,103 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       @for (suscripcion of suscripcionesFiltradas; track $index) {
-        @if (suscripcion.Estatus === EstadoSuscripcion.Activa) {
-          <div
-            class="group relative bg-gray-800/40 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/20">
-            <div class="absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b from-green-400 to-green-600"></div>
 
-            @if (suscripcion.Membresias.Nombre.toLowerCase().includes("premium")) {
-              <div
-                class="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-amber-400 to-amber-300 text-amber-900 text-xs font-bold rounded-md shadow-lg transform rotate-3">
-                -->
-                PREMIUM
+        @let colorEstado = suscripcion.Estatus == EstadoSuscripcion.Activa ? 'bg-green-400' :
+          suscripcion.Estatus == EstadoSuscripcion.ActivaCancelada ? 'bg-green-600' :
+            suscripcion.Estatus == EstadoSuscripcion.FaltaPago ? 'bg-amber-200' :
+              suscripcion.Estatus == EstadoSuscripcion.Cancelada ? 'bg-red-400' : '';
+
+        @let colorDegradado = suscripcion.Estatus == EstadoSuscripcion.Activa
+          ? 'from-green-400 to-green-900'
+          : suscripcion.Estatus == EstadoSuscripcion.ActivaCancelada
+            ? 'from-orange-300 to-orange-800'
+            : suscripcion.Estatus == EstadoSuscripcion.FaltaPago
+              ? 'from-amber-200 to-amber-600'
+              : suscripcion.Estatus == EstadoSuscripcion.Cancelada
+                ? 'from-red-400 to-red-700'
+                : 'from-gray-300 to-gray-600';
+
+
+        <div
+          class="group relative bg-gray-800/40 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/20">
+
+          <div class="absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b {{colorDegradado}}"></div>
+          @if (suscripcion.Estatus === EstadoSuscripcion.Activa) {
+
+            <div
+              class="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-green-500 to-green-700 text-gray-100 text-xs font-bold rounded-md shadow-lg transform rotate-3">
+              -->
+              Activa
+            </div>
+          }
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+                <span class="inline-block w-2 h-2 rounded-full mr-2 animate-pulse {{colorEstado}}"
+                ></span>
+              <span class="text-xs font-medium uppercase tracking-wider">{{ suscripcion.Estatus }}</span>
+            </div>
+
+            <h2 class="text-xl font-bold mb-2">{{ suscripcion.Membresias.Nombre }}</h2>
+            <p class="text-sm text-gray-400 mb-6">{{ suscripcion.Membresias.Descripcion }}</p>
+
+            <div class="space-y-4">
+              <div class="flex justify-between items-center border-b border-gray-700/50 pb-3">
+                <span class="text-sm text-gray-400">Inicia</span>
+                <span class="font-medium">{{ suscripcion.Inicia | date:'dd/MM/yyyy' }}</span>
               </div>
-            }
-            <div class="p-6">
-              <div class="flex items-center mb-4">
-                <span class="inline-block w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
-                <span class="text-xs font-medium uppercase tracking-wider text-green-400">Activa</span>
+
+              <div class="flex justify-between items-center border-b border-gray-700/50 pb-3">
+                <span class="text-sm text-gray-400">Finaliza</span>
+                <span class="font-medium">{{ suscripcion.Finaliza | date:'dd/MM/yyyy' }}</span>
               </div>
 
-              <h2 class="text-xl font-bold mb-2">{{ suscripcion.Membresias.Nombre }}</h2>
-              <p class="text-sm text-gray-400 mb-6">{{ suscripcion.Membresias.Descripcion }}</p>
-
-              <div class="space-y-4">
-                <div class="flex justify-between items-center border-b border-gray-700/50 pb-3">
-                  <span class="text-sm text-gray-400">Inicia</span>
-                  <span class="font-medium">{{ suscripcion.Inicia | date:'dd/MM/yyyy' }}</span>
-                </div>
-
-                <div class="flex justify-between items-center border-b border-gray-700/50 pb-3">
-                  <span class="text-sm text-gray-400">Finaliza</span>
+              @if (suscripcion.Renovante) {
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-gray-400">Próxima facturación</span>
                   <span class="font-medium">{{ suscripcion.Finaliza | date:'dd/MM/yyyy' }}</span>
                 </div>
-
-                @if (suscripcion.Renovante) {
-                  <div class="flex justify-between items-center">
-                    <span class="text-sm text-gray-400">Próxima facturación</span>
-                    <span class="font-medium">{{ suscripcion.Finaliza | date:'dd/MM/yyyy' }}</span>
-                  </div>
-                }
-              </div>
-
-              @if (diasRestantes(suscripcion.Finaliza) < 7) {
-                <button
-                  class="mt-6 w-full py-2 bg-green-500/20 text-green-300 text-sm font-medium rounded-lg hover:bg-green-500/30 transition-colors duration-300 flex justify-center items-center gap-2">
-                  <span class="text-xs">Renovar ahora</span>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                  </svg>
-                </button>
               }
-
-              <div
-                class="absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-green-500/5 z-0 group-hover:bg-green-500/10 transition-all duration-500"></div>
             </div>
+
+            @if (diasRestantes(suscripcion.Finaliza) < 7) {
+              <button
+                [routerLink]="[Rutas.Pagar, suscripcion.id]"
+                class="mt-6 w-full py-2 bg-green-500/20 text-green-300 text-sm font-medium rounded-lg hover:bg-green-500/30 transition-colors duration-300 flex justify-center items-center gap-2">
+                <span class="text-xs">Renovar ahora</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </button>
+            }
+            @if(suscripcion.Estatus == EstadoSuscripcion.FaltaPago){
+              <button
+                [routerLink]="[Rutas.Pagar, suscripcion.id]"
+                class="mt-6 w-full py-2 bg-green-500/20 text-green-300 text-sm font-medium rounded-lg hover:bg-green-500/30 transition-colors duration-300 flex justify-center items-center gap-2">
+                <span class="text-xs">Realizar Pago</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </button>
+            }
+            @if(suscripcion.Estatus == EstadoSuscripcion.Activa){
+              <button
+                (click)="CancelarSuscripcion(suscripcion.id)"
+                class="mt-6 w-full py-2 bg-red-500/20 text-red-300 text-sm font-medium rounded-lg hover:gred-500/30 transition-colors duration-300 flex justify-center items-center gap-2">
+                <span class="text-xs">Cancelar</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </button>
+            }
+            <div
+            class="absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-gray-400/5 z-0 group-hover:bg-green-500/10 transition-all duration-500">
           </div>
-        }
+            </div>
+        </div>
+
       } @empty {
         <div
 
@@ -104,7 +145,7 @@
 
       }
 
-      @if (Suscripciones?.length === 0) {
+      @if (Suscripciones.length === 0) {
         <div
           class="col-span-full flex flex-col items-center justify-center p-16 bg-gray-800/20 backdrop-blur-sm rounded-2xl border border-gray-700/20">
           <div
