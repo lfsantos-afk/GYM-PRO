@@ -136,7 +136,6 @@ export class AdministradorServicio {
       suscripcionesPorEstado: Object.values(resultSuscripciones),
     }
 
-
   }
 
   private async ObtenerDatosSuscripciones() {
@@ -192,5 +191,16 @@ export class AdministradorServicio {
       .eq("id", id)
       .select();
     return error === null;
+  }
+
+
+  async ChequearSuscriVencidas() {
+    const {data, error} = await this.supabase
+      .from('Suscripciones')
+      .update({Estatus: EstadoSuscripcion.Cancelada})
+      .match({Estatus: EstadoSuscripcion.Activa})
+      .lt('Finaliza', new Date().toISOString());
+    console.log("Termine", data);
+    console.error(error);
   }
 }
