@@ -1,0 +1,192 @@
+<div class="min-h-screen bg-gray-900 text-gray-100 pt-20">
+  <div class="p-4 bg-gray-800">
+    <ng-content></ng-content>
+    <h1 class="text-2xl font-bold text-center text-indigo-400">Editar Membresía</h1>
+  </div>
+
+  <div class="flex flex-col md:flex-row h-full">
+    <!-- LADO IZQUIERDO - VISTA PREVIA -->
+    <div class="w-full md:w-1/2 p-6 md:border-r border-gray-700 bg-gray-900">
+      <div class="sticky top-6">
+        <h2 class="text-xl font-bold text-indigo-400 mb-4">Vista Previa</h2>
+
+        <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 shadow-lg">
+
+          <div class="animate-fade-in">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="text-xl font-bold text-white">{{ preview.Nombre || 'Nombre de Membresía' }}</h3>
+                <p class="text-indigo-400 text-xl font-bold mt-2">
+                  ${{ preview.Precio || '0.00' }}
+                  <span class="text-gray-400 text-sm"> / {{ preview.DuracionMeses || '0' }} meses</span>
+                </p>
+              </div>
+              <span class="px-3 py-1 bg-indigo-900 text-indigo-300 rounded-full text-sm">
+                {{ preview.publicoObjectivo || 'Público Objetivo' }}
+              </span>
+            </div>
+
+            <div class="mt-6">
+              <h4 class="text-sm font-medium text-gray-400 mb-3">Incluye:</h4>
+              <ul class="space-y-3">
+                @for (beneficio of preview.Descripcion.split(','); track beneficio) {
+                  <li class="flex items-start">
+                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-gray-300">{{ beneficio }}</span>
+                  </li>
+                } @empty {
+                  <li class="text-gray-500 italic text-sm">
+                    No se han añadido beneficios
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- LADO DERECHO - FORMULARIO -->
+    <div class="w-full md:w-1/2 p-6 bg-gray-800">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-indigo-400">Editar Membresía</h2>
+        <div class="text-sm bg-gray-700 px-3 py-1 rounded-full text-gray-300">
+          ID: {{ membresia.id }}
+        </div>
+      </div>
+
+      <form [formGroup]="membresiaForm" (ngSubmit)="guardarCambios()" class="space-y-5">
+        <!-- Nombre -->
+        <div>
+          <label for="nombre" class="block text-sm font-medium text-gray-300 mb-1">Nombre de la Membresía</label>
+          <input
+            type="text"
+            id="nombre"
+            formControlName="nombre"
+            class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+            placeholder="Ej: Premium Plus"
+          >
+          @if (f['nombre'].errors) {
+            <div class="text-red-400 text-sm mt-1">
+              @if (f['nombre'].errors?.['required']) {
+                <div>El nombre es obligatorio</div>
+              }
+            </div>
+          }
+        </div>
+        <!-- Descripción -->
+        <div>
+          <label for="descripcion" class="block text-sm font-medium text-gray-300 mb-1">
+            Descripción (Separar beneficios por -puntos)
+          </label>
+          <textarea
+            id="descripcion"
+            formControlName="descripcion"
+            rows="4"
+            class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+            placeholder="Ej: Acceso ilimitado, Soporte 24/7, Contenido exclusivo, Descuentos especiales"
+          ></textarea>
+          @if (f['descripcion'].errors) {
+            <div class="text-red-400 text-sm mt-1">
+              <div>La descripción es obligatoria</div>
+            </div>
+          }
+        </div>
+
+        <!-- Público Objetivo -->
+        <div>
+          <label for="publicoObjectivo" class="block text-sm font-medium text-gray-300 mb-1">Público Objetivo</label>
+          <input
+            type="text"
+            id="publicoObjectivo"
+            formControlName="publicoObjectivo"
+            class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+            placeholder="Ej: Profesionales, Estudiantes, Empresas"
+          >
+          @if (f['publicoObjectivo'].errors) {
+            <div class="text-red-400 text-sm mt-1">
+              @if (f['publicoObjectivo'].errors?.['required']) {
+                <div>El público objetivo es obligatorio</div>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Duración y Precio -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <!-- Duración -->
+          <div>
+            <label for="duracionMeses" class="block text-sm font-medium text-gray-300 mb-1">Duración (Meses)</label>
+            <input
+              type="number"
+              id="duracionMeses"
+              formControlName="duracionMeses"
+              min="1"
+              class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+              placeholder="Ej: 12"
+            >
+            @if (f['duracionMeses'].errors) {
+              <div class="text-red-400 text-sm mt-1">
+                @if (f['duracionMeses'].errors?.['required']) {
+                  <div>La duración es obligatoria</div>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Precio -->
+          <div>
+            <label for="precio" class="block text-sm font-medium text-gray-300 mb-1">Precio</label>
+            <input
+              type="number"
+              id="precio"
+              formControlName="precio"
+              min="1"
+              step="1"
+              class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+              placeholder="Ej: 99.99"
+            >
+            @if (f['precio'].errors) {
+              <div class="text-red-400 text-sm mt-1">
+                <div>El precio es obligatorio</div>
+              </div>
+            }
+
+          </div>
+        </div>
+
+        <!-- Estado -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-1">Estado</label>
+          <div class="flex items-center space-x-4">
+            <p>{{ preview.Activa ? 'Activa ' : 'Inactiva' }}</p>
+
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
+          <button
+            type="submit"
+            class="flex-1 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-gray-800 text-white font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
+            [disabled]="membresiaForm.invalid"
+          >
+            Guardar Cambios
+          </button>
+          <button
+            type="button"
+            class="flex-1 px-6 py-3 bg-red-700 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+            (click)="eliminarMembresia()"
+          >
+            Eliminar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

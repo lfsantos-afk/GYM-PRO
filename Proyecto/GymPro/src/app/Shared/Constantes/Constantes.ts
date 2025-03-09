@@ -39,7 +39,7 @@ export const RutasRouting = {
 
 export  const  EstadoSuscripcion = {
   Activa : "Activa",
-  ActivaCancelada : "Cancelada",
+  ActivaCancelada : "ActivaCancelada",
   Cancelada : "Cancelada",
   FaltaPago : "Falta Pago",
 }

@@ -143,6 +143,49 @@ export class AuthServicio {
     return resultado;
   }
 
+
+  async CambiarPassword(password: string) {
+    const {data, error} = await this.supabase.auth.updateUser({
+      password: password
+    });
+
+    return error === null ?
+      null : error.message === 'New password should be different from the old password.' ?
+        'La nueva contraseña debe ser diferente' :
+        'Algo salio mal al cambiar la contraseña 📌';
+  }
+
+  async EliminarCuenta() {
+    const clienteId = await this.ObtenerClienteId();
+    if (clienteId) {
+      const resultClientes = await this.supabase.from("Clientes")
+        .delete()
+        .eq("UserId", clienteId)
+      ;
+      if (resultClientes.error !== null) {
+        console.error("Error al elimianr el cleinte...", resultClientes.error);
+        return false;
+      }
+
+      const supabaseAdmin = createClient(environment.SupabaseUrl, environment.SupabaseAdminKey, {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      });
+      const {data, error} = await supabaseAdmin.auth.admin.deleteUser(
+        clienteId
+      );
+      console.info(data);
+      console.error(error?.message);
+      return error === null;
+
+    } else {
+      return false;
+    }
+
+  }
+
   async CerrarSeccion() {
     this.rolUsuario.next(null);
     return await this.supabase.auth.signOut();

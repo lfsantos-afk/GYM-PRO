@@ -50,7 +50,7 @@
               <div class="px-4 py-3 border-b border-gray-700">
                 <p class="text-sm text-gray-300">Conectado como</p>
                 <p
-                  class="text-sm font-medium text-white truncate">{{ (role == Roles.Client ? "Cliente " : "Administrador") }}</p>
+                  class="text-sm font-medium text-white ">{{ (role == Roles.Client ? "Cliente " : "Administrador") }}</p>
               </div>
 
               @if (role == Roles.Client) {
@@ -116,7 +116,7 @@
       }
 
       <!-- Botón de menu para telefonos -->
-      <button data-collapse-toggle="navbar-sticky" type="button"
+      <button (click)="BotonMenu()" (focusout)="BotonMenu()"  data-collapse-toggle="navbar-sticky" type="button"
               class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-800 focus:outline-none">
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -125,7 +125,9 @@
       </button>
     </div>
 
-    <div [class.hidden]="!MenuAbierto" class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+<!--    <div [class.hidden]="!MenuAbierto" class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"-->
+<!--         id="navbar-sticky">  -->
+      <div [class.hidden]="!MenuAbierto"  class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
          id="navbar-sticky">
       <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium md:space-x-4 md:flex-row md:mt-0">
         <li>

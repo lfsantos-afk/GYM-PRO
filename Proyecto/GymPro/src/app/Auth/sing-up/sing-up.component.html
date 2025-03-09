@@ -1,109 +1,213 @@
 
 
-<section class="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 px-4 ">
-  <div class="w-full max-w-md bg-white rounded-2xl shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800">
-    <div class="p-8 space-y-6">
+<!--<section class="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 px-4 ">-->
+<!--  <div class="w-full max-w-md bg-white rounded-2xl shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800">-->
+<!--    <div class="p-8 space-y-6">-->
+<!--      &lt;!&ndash; Título con Icono &ndash;&gt;-->
+<!--      <div class="flex items-center justify-center space-x-2">-->
+<!--        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
+<!--          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 18.75 7.5-7.5 7.5 7.5" />-->
+<!--          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 7.5-7.5 7.5 7.5" />-->
+<!--        </svg>-->
+
+<!--        <h1 class="text-2xl font-bold underline decoration-blue-700 text-gray-900 dark:text-white">-->
+<!--          Únetenos-->
+<!--        </h1>-->
+<!--      </div>-->
+<!--      <p class="text-center text-gray-700 dark:text-gray-300 text-sm md:text-base font-medium mt-2">-->
+<!--      Empieza hoy, transforma tu cuerpo y tu vida.-->
+<!--      <span class="text-blue-600 dark:text-blue-400 font-semibold">¡Únete a GYM PRO</span>-->
+<!--      y alcanza tu mejor versión!-->
+<!--    </p>-->
+
+
+
+<!--      &lt;!&ndash; Formulario &ndash;&gt;-->
+<!--      <form [formGroup]="form" (ngSubmit)="Registrar()" class="space-y-5">-->
+<!--        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">-->
+<!--          &lt;!&ndash; Correo &ndash;&gt;-->
+<!--          <div class="col-span-2">-->
+<!--            <label for="email" class="block text-sm font-medium dark:text-white">Correo electrónico</label>-->
+<!--            <input id="email" type="email" formControlName="email"-->
+<!--                   class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white" />-->
+<!--            @if (form.get('email')?.invalid && form.get('email')?.touched) {-->
+<!--              <div class="text-red-500 text-sm">Proporcione un correo válido.</div>-->
+<!--            }-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash; Nombre &ndash;&gt;-->
+<!--          <div>-->
+<!--            <label for="nombre" class="block text-sm font-medium dark:text-white">Nombre</label>-->
+<!--            <input id="nombre" type="text" formControlName="nombre"-->
+<!--                   class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white" />-->
+<!--            @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {-->
+<!--              <div class="text-red-500 text-sm">El nombre es obligatorio.</div>-->
+<!--            }-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash; Apellido &ndash;&gt;-->
+<!--          <div>-->
+<!--            <label for="apellido" class="block text-sm font-medium dark:text-white">Apellido</label>-->
+<!--            <input id="apellido" type="text" formControlName="apellido"-->
+<!--                   class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white" />-->
+<!--            @if (form.get('apellido')?.invalid && form.get('apellido')?.touched) {-->
+<!--              <div class="text-red-500 text-sm">El apellido es obligatorio.</div>-->
+<!--            }-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash; Teléfono &ndash;&gt;-->
+<!--          <div>-->
+<!--            <label for="telefono" class="block text-sm font-medium dark:text-white">Teléfono</label>-->
+<!--            <input id="telefono" type="text" formControlName="telefono"-->
+<!--                   class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white" />-->
+<!--            @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {-->
+<!--              <div class="text-red-500 text-sm">Proporcione un teléfono válido.</div>-->
+<!--            }-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash; Contraseña &ndash;&gt;-->
+<!--          <div>-->
+<!--            <label for="password" class="block text-sm font-medium dark:text-white">Contraseña</label>-->
+<!--            <input id="password" type="password" formControlName="password"-->
+<!--                   class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white" />-->
+<!--            @if (form.get('password')?.invalid && form.get('password')?.touched) {-->
+<!--              <div class="text-red-500 text-sm">La contraseña debe tener al menos 6 caracteres.</div>-->
+<!--            }-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash; Dirección &ndash;&gt;-->
+<!--          <div class="col-span-2">-->
+<!--            <label for="direccion" class="block text-sm font-medium dark:text-white">Dirección</label>-->
+<!--            <textarea id="direccion" formControlName="direccion"-->
+<!--                      class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white"></textarea>-->
+<!--            @if (form.get('direccion')?.invalid && form.get('direccion')?.touched) {-->
+<!--              <div class="text-red-500 text-sm">La dirección es obligatoria.</div>-->
+<!--            }-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Botón de Registro &ndash;&gt;-->
+<!--        <button type="submit" [disabled]="form.invalid"-->
+<!--                class="w-full py-2.5 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-semibold rounded-lg text-sm text-center transition-all disabled:bg-blue-900 disabled:text-gray-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700">-->
+<!--          Registrar-->
+<!--        </button>-->
+
+<!--        &lt;!&ndash; Enlace a Inicio de Sesión &ndash;&gt;-->
+<!--        <p class="text-sm text-gray-600 dark:text-gray-400 text-center">-->
+<!--          ¿Tienes cuenta?-->
+<!--          <a [routerLink]="AuthRutas.LogIn" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Inicia sesión!</a>-->
+<!--        </p>-->
+<!--      </form>-->
+
+<!--      &lt;!&ndash; Link para Administradores &ndash;&gt;-->
+<!--      <span [routerLink]="[AuthRutas.SignUpAdmin]" class="text-gray-500 text-xs underline cursor-pointer text-center block">-->
+<!--        Soy Administrador-->
+<!--      </span>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+<section class="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4 sm:p-6">
+  <div class="w-full max-w-sm sm:max-w-md md:max-w-lg bg-white rounded-2xl shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800 transition-all">
+    <div class="p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6">
       <!-- Título con Icono -->
       <div class="flex items-center justify-center space-x-2">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 18.75 7.5-7.5 7.5 7.5" />
           <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 7.5-7.5 7.5 7.5" />
         </svg>
 
-        <h1 class="text-2xl font-bold underline decoration-blue-700 text-gray-900 dark:text-white">
+        <h1 class="text-xl sm:text-2xl font-bold underline decoration-blue-700 text-gray-900 dark:text-white">
           Únetenos
         </h1>
       </div>
-      <p class="text-center text-gray-700 dark:text-gray-300 text-sm md:text-base font-medium mt-2">
-      Empieza hoy, transforma tu cuerpo y tu vida.
-      <span class="text-blue-600 dark:text-blue-400 font-semibold">¡Únete a GYM PRO</span>
-      y alcanza tu mejor versión!
-    </p>
-
-
+      <p class="text-center text-gray-700 dark:text-gray-300 text-xs sm:text-sm md:text-base font-medium mt-1 sm:mt-2 px-2 sm:px-4">
+        Empieza hoy, transforma tu cuerpo y tu vida.
+        <span class="text-blue-600 dark:text-blue-400 font-semibold">¡Únete a GYM PRO</span>
+        y alcanza tu mejor versión!
+      </p>
 
       <!-- Formulario -->
-      <form [formGroup]="form" (ngSubmit)="Registrar()" class="space-y-5">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form [formGroup]="form" (ngSubmit)="Registrar()" class="space-y-3 sm:space-y-4 md:space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <!-- Correo -->
-          <div class="col-span-2">
-            <label for="email" class="block text-sm font-medium dark:text-white">Correo electrónico</label>
+          <div class="col-span-1 sm:col-span-2">
+            <label for="email" class="block text-xs sm:text-sm font-medium dark:text-white">Correo electrónico</label>
             <input id="email" type="email" formControlName="email"
-                   class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white" />
+                   class="mt-1 block w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white" />
             @if (form.get('email')?.invalid && form.get('email')?.touched) {
-              <div class="text-red-500 text-sm">Proporcione un correo válido.</div>
+              <div class="text-red-500 text-xs sm:text-sm">Proporcione un correo válido.</div>
             }
           </div>
 
           <!-- Nombre -->
           <div>
-            <label for="nombre" class="block text-sm font-medium dark:text-white">Nombre</label>
+            <label for="nombre" class="block text-xs sm:text-sm font-medium dark:text-white">Nombre</label>
             <input id="nombre" type="text" formControlName="nombre"
-                   class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white" />
+                   class="mt-1 block w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white" />
             @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
-              <div class="text-red-500 text-sm">El nombre es obligatorio.</div>
+              <div class="text-red-500 text-xs sm:text-sm">El nombre es obligatorio.</div>
             }
           </div>
 
           <!-- Apellido -->
           <div>
-            <label for="apellido" class="block text-sm font-medium dark:text-white">Apellido</label>
+            <label for="apellido" class="block text-xs sm:text-sm font-medium dark:text-white">Apellido</label>
             <input id="apellido" type="text" formControlName="apellido"
-                   class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white" />
+                   class="mt-1 block w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white" />
             @if (form.get('apellido')?.invalid && form.get('apellido')?.touched) {
-              <div class="text-red-500 text-sm">El apellido es obligatorio.</div>
+              <div class="text-red-500 text-xs sm:text-sm">El apellido es obligatorio.</div>
             }
           </div>
 
           <!-- Teléfono -->
           <div>
-            <label for="telefono" class="block text-sm font-medium dark:text-white">Teléfono</label>
+            <label for="telefono" class="block text-xs sm:text-sm font-medium dark:text-white">Teléfono</label>
             <input id="telefono" type="text" formControlName="telefono"
-                   class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white" />
+                   class="mt-1 block w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white" />
             @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {
-              <div class="text-red-500 text-sm">Proporcione un teléfono válido.</div>
+              <div class="text-red-500 text-xs sm:text-sm">Proporcione un teléfono válido.</div>
             }
           </div>
 
           <!-- Contraseña -->
           <div>
-            <label for="password" class="block text-sm font-medium dark:text-white">Contraseña</label>
+            <label for="password" class="block text-xs sm:text-sm font-medium dark:text-white">Contraseña</label>
             <input id="password" type="password" formControlName="password"
-                   class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white" />
+                   class="mt-1 block w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white" />
             @if (form.get('password')?.invalid && form.get('password')?.touched) {
-              <div class="text-red-500 text-sm">La contraseña debe tener al menos 6 caracteres.</div>
+              <div class="text-red-500 text-xs sm:text-sm">La contraseña debe tener al menos 6 caracteres.</div>
             }
           </div>
 
           <!-- Dirección -->
-          <div class="col-span-2">
-            <label for="direccion" class="block text-sm font-medium dark:text-white">Dirección</label>
-            <textarea id="direccion" formControlName="direccion"
-                      class="mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-white"></textarea>
+          <div class="col-span-1 sm:col-span-2">
+            <label for="direccion" class="block text-xs sm:text-sm font-medium dark:text-white">Dirección</label>
+            <textarea id="direccion" formControlName="direccion" rows="2"
+                      class="mt-1 block w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"></textarea>
             @if (form.get('direccion')?.invalid && form.get('direccion')?.touched) {
-              <div class="text-red-500 text-sm">La dirección es obligatoria.</div>
+              <div class="text-red-500 text-xs sm:text-sm">La dirección es obligatoria.</div>
             }
           </div>
         </div>
 
         <!-- Botón de Registro -->
         <button type="submit" [disabled]="form.invalid"
-                class="w-full py-2.5 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-semibold rounded-lg text-sm text-center transition-all disabled:bg-blue-900 disabled:text-gray-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700">
+                class="w-full py-2 sm:py-2.5 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-semibold rounded-lg text-xs sm:text-sm text-center transition-all disabled:bg-blue-900 disabled:text-gray-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700">
           Registrar
         </button>
 
         <!-- Enlace a Inicio de Sesión -->
-        <p class="text-sm text-gray-600 dark:text-gray-400 text-center">
+        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center">
           ¿Tienes cuenta?
           <a [routerLink]="AuthRutas.LogIn" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Inicia sesión!</a>
         </p>
       </form>
 
       <!-- Link para Administradores -->
-      <span [routerLink]="[AuthRutas.SignUpAdmin]" class="text-gray-500 text-xs underline cursor-pointer text-center block">
+      <span [routerLink]="[AuthRutas.SignUpAdmin]" class="text-gray-500 text-xs hover:text-gray-700 dark:hover:text-gray-300 underline cursor-pointer text-center block mt-2">
         Soy Administrador
       </span>
     </div>
   </div>
 </section>
-

@@ -6,13 +6,16 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router'
 import {NotificacionServicio} from 'Servicios/NotificacionServicio';
 import {Rutas} from 'Constantes/Constantes';
 import {ClienteServicio} from 'Servicios/ClienteServicio';
+import {ICreateOrderRequest, IPayPalConfig, NgxPayPalModule} from 'ngx-paypal';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-crear-suscripcion',
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    RouterLink
+    NgxPayPalModule,
+    DatePipe
   ],
   templateUrl: './crear-suscripcion.component.html',
   styleUrl: './crear-suscripcion.component.css'
@@ -27,6 +30,7 @@ export class CrearSuscripcionComponent implements OnInit {
   }
   membresia: Membresia | null = null;
   minInicia = new Date().toISOString().split('T')[0];
+  public payPalConfig ?: IPayPalConfig;
 
   constructor(private serv: MembresiaServicio,
               private clienteServicio: ClienteServicio,
@@ -87,7 +91,7 @@ export class CrearSuscripcionComponent implements OnInit {
 
     } else {
       this.notificar.NotificarBien("Suscripcion guardada. Hagamos el pago");
-      await this.router.navigate([Rutas.Pagar, result.mensaje ]);
+      await this.router.navigate([Rutas.Pagar, result.mensaje]);
     }
   }
 
@@ -99,4 +103,6 @@ export class CrearSuscripcionComponent implements OnInit {
   }
 
   protected readonly Rutas = Rutas;
+
+
 }
