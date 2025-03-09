@@ -27,7 +27,7 @@
             Registrarse
           </span>
       } @else {
-        <!-- Perfil con menú desplegable mejorado -->
+        <!-- Perfil con menú desplegable  -->
         <div class="relative">
           <button type="button"
                   (click)="toggleUserMenu()"
@@ -43,7 +43,7 @@
             </svg>
           </button>
 
-          <!-- Menú desplegable mejorado -->
+          <!-- Menú desplegable  -->
           @if (userMenuOpen) {
             <div class="absolute right-0 mt-2 w-56 bg-gray-800 rounded-lg shadow-lg py-1 z-50
                        animate-fadeIn border border-gray-700 overflow-hidden">
@@ -125,8 +125,6 @@
       </button>
     </div>
 
-<!--    <div [class.hidden]="!MenuAbierto" class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"-->
-<!--         id="navbar-sticky">  -->
       <div [class.hidden]="!MenuAbierto"  class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
          id="navbar-sticky">
       <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium md:space-x-4 md:flex-row md:mt-0">
