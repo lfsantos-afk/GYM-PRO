@@ -1,7 +1,7 @@
 <div class="min-h-screen bg-gray-900 text-gray-100 pt-20">
   <div class="p-4 bg-gray-800">
     <ng-content></ng-content>
-    <h1 class="text-2xl font-bold text-center text-indigo-400">Gestión de Membresías</h1>
+    <h1 class="text-2xl font-bold text-center text-indigo-400">Editar Membresía</h1>
   </div>
 
   <div class="flex flex-col md:flex-row h-full">
@@ -22,14 +22,14 @@
                 </p>
               </div>
               <span class="px-3 py-1 bg-indigo-900 text-indigo-300 rounded-full text-sm">
-                  {{ preview.publicoObjectivo || 'Público Objetivo' }}
-                </span>
+                {{ preview.publicoObjectivo || 'Público Objetivo' }}
+              </span>
             </div>
 
             <div class="mt-6">
               <h4 class="text-sm font-medium text-gray-400 mb-3">Incluye:</h4>
               <ul class="space-y-3">
-                @for (beneficio of beneficiosList; track beneficio) {
+                @for (beneficio of preview.Descripcion.split(','); track beneficio) {
                   <li class="flex items-start">
                     <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 20 20" fill="currentColor">
@@ -40,7 +40,6 @@
                     <span class="text-gray-300">{{ beneficio }}</span>
                   </li>
                 } @empty {
-
                   <li class="text-gray-500 italic text-sm">
                     No se han añadido beneficios
                   </li>
@@ -55,10 +54,14 @@
 
     <!-- LADO DERECHO - FORMULARIO -->
     <div class="w-full md:w-1/2 p-6 bg-gray-800">
-      <h2 class="text-xl font-bold text-indigo-400 mb-4">Crear Membresía</h2>
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-indigo-400">Editar Membresía</h2>
+        <div class="text-sm bg-gray-700 px-3 py-1 rounded-full text-gray-300">
+          ID: {{ membresia.id }}
+        </div>
+      </div>
 
-      <form [formGroup]="membresiaForm" (ngSubmit)="btnAgregar()" (change)="ActualizarPreview()"
-            (keyup)="ActualizarPreview()" class="space-y-5">
+      <form [formGroup]="membresiaForm" (ngSubmit)="guardarCambios()" class="space-y-5">
         <!-- Nombre -->
         <div>
           <label for="nombre" class="block text-sm font-medium text-gray-300 mb-1">Nombre de la Membresía</label>
@@ -69,7 +72,7 @@
             class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
             placeholder="Ej: Premium Plus"
           >
-          @if ( f['nombre'].errors) {
+          @if (f['nombre'].errors) {
             <div class="text-red-400 text-sm mt-1">
               @if (f['nombre'].errors?.['required']) {
                 <div>El nombre es obligatorio</div>
@@ -80,7 +83,7 @@
         <!-- Descripción -->
         <div>
           <label for="descripcion" class="block text-sm font-medium text-gray-300 mb-1">
-            Descripción (Separar beneficios por comas)
+            Descripción (Separar beneficios por -puntos)
           </label>
           <textarea
             id="descripcion"
@@ -89,7 +92,7 @@
             class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
             placeholder="Ej: Acceso ilimitado, Soporte 24/7, Contenido exclusivo, Descuentos especiales"
           ></textarea>
-          @if ( f['descripcion'].errors) {
+          @if (f['descripcion'].errors) {
             <div class="text-red-400 text-sm mt-1">
               <div>La descripción es obligatoria</div>
             </div>
@@ -106,7 +109,7 @@
             class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
             placeholder="Ej: Profesionales, Estudiantes, Empresas"
           >
-          @if ( f['publicoObjectivo'].errors) {
+          @if (f['publicoObjectivo'].errors) {
             <div class="text-red-400 text-sm mt-1">
               @if (f['publicoObjectivo'].errors?.['required']) {
                 <div>El público objetivo es obligatorio</div>
@@ -128,7 +131,7 @@
               class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
               placeholder="Ej: 12"
             >
-            @if ( f['duracionMeses'].errors) {
+            @if (f['duracionMeses'].errors) {
               <div class="text-red-400 text-sm mt-1">
                 @if (f['duracionMeses'].errors?.['required']) {
                   <div>La duración es obligatoria</div>
@@ -149,21 +152,38 @@
               class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
               placeholder="Ej: 99.99"
             >
+            @if (f['precio'].errors) {
+              <div class="text-red-400 text-sm mt-1">
+                <div>El precio es obligatorio</div>
+              </div>
+            }
+
           </div>
         </div>
+
+        <!-- Estado -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-1">Estado</label>
+          <div class="flex items-center space-x-4">
+            <p>{{ preview.Activa ? 'Activa ' : 'Inactiva' }}</p>
+
+          </div>
+        </div>
+
         <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
           <button
             type="submit"
             class="flex-1 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-gray-800 text-white font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
+            [disabled]="membresiaForm.invalid"
           >
-            Guardar Membresía
+            Guardar Cambios
           </button>
           <button
             type="button"
-            class="flex-1 px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-800"
-            (click)="resetForm()"
+            class="flex-1 px-6 py-3 bg-red-700 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+            (click)="eliminarMembresia()"
           >
-            Cancelar
+            Eliminar
           </button>
         </div>
       </form>

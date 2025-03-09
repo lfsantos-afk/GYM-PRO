@@ -66,8 +66,8 @@ export class AdministradorServicio {
     };
     const resultSuscripciones = suscripciones.reduce<{
       [key: string]: { cantidad: number, nombre: string }
-    }>((guardados , actual, index) => {
-      if(index===0){
+    }>((guardados, actual, index) => {
+      if (index === 0) {
         guardados = valoresPorDefecto;
       }
       const estado = actual.Estatus;
@@ -151,5 +151,46 @@ export class AdministradorServicio {
       .from('Pagos')
       .select('Monto,Fecha') as { data: { Monto: number, Fecha: string }[], error: any };
     return data;
+  }
+
+  async AgregarMembresia(preview: Membresia) {
+    const {error} = await this.supabase
+      .from("Membresias")
+      .insert({
+        "Nombre": preview.Nombre,
+        "Descripcion": preview.Descripcion,
+        "DuracionMeses": preview.DuracionMeses,
+        "Precio": preview.Precio,
+        "Activa": true,
+        "publicoObjectivo": preview.publicoObjectivo,
+      }).select();
+    return error === null;
+  }
+
+  async ActualizarMembresia(id: number, membresia: Membresia) {
+    const {error} = await this.supabase
+      .from("Membresias")
+      .update({
+        "Nombre": membresia.Nombre,
+        "Descripcion": membresia.Descripcion,
+        "DuracionMeses": membresia.DuracionMeses,
+        "Precio": membresia.Precio,
+        "publicoObjectivo": membresia.publicoObjectivo,
+      })
+      .eq("id", id)
+      .select();
+    return error === null;
+  }
+
+  async eliminarMembresia(id: number) {
+
+    const {error} = await this.supabase
+      .from("Membresias")
+      .update({
+        "Activa": false
+      })
+      .eq("id", id)
+      .select();
+    return error === null;
   }
 }
