@@ -87,7 +87,6 @@ export class CrearSuscripcionComponent implements OnInit {
       this.suscripcion.renovante);
     if (result.error) {
       this.notificar.NotificarError("Error al guardar tu suscripcion :(");
-      this.notificar.NotificarError(result.error as string);
 
     } else {
       this.notificar.NotificarBien("Suscripcion guardada. Hagamos el pago");

@@ -85,7 +85,8 @@
               }
             </div>
 
-            @if (diasRestantes(suscripcion.Finaliza) < 7) {
+            @if (diasRestantes(suscripcion.Finaliza) < 7 && !AlgunaActiva && suscripcion.Renovante ) {
+
               <button
                 [routerLink]="[Rutas.Pagar, suscripcion.id]"
                 class="mt-6 w-full py-2 bg-green-500/20 text-green-300 text-sm font-medium rounded-lg hover:bg-green-500/30 transition-colors duration-300 flex justify-center items-center gap-2">
@@ -96,18 +97,23 @@
                 </svg>
               </button>
             }
-            @if(suscripcion.Estatus == EstadoSuscripcion.FaltaPago){
+            @if (suscripcion.Estatus == EstadoSuscripcion.FaltaPago) {
+
               <button
                 [routerLink]="[Rutas.Pagar, suscripcion.id]"
-                class="mt-6 w-full py-2 bg-green-500/20 text-green-300 text-sm font-medium rounded-lg hover:bg-green-500/30 transition-colors duration-300 flex justify-center items-center gap-2">
+                [disabled]="AlgunaActiva"
+                class="mt-6 w-full py-2 bg-green-500/20 text-green-300 text-sm font-medium rounded-lg hover:bg-green-500/30 disabled:bg-gray-400 transition-colors duration-300 flex justify-center items-center gap-2">
                 <span class="text-xs">Realizar Pago</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                 </svg>
               </button>
+              @if (AlgunaActiva) {
+                <small class="text-red-200 text-center underline">Ya tienes una suscripcion activa.</small>
+              }
             }
-            @if(suscripcion.Estatus == EstadoSuscripcion.Activa){
+            @if (suscripcion.Estatus == EstadoSuscripcion.Activa) {
               <button
                 (click)="CancelarSuscripcion(suscripcion.id)"
                 class="mt-6 w-full py-2 bg-red-500/20 text-red-300 text-sm font-medium rounded-lg hover:gred-500/30 transition-colors duration-300 flex justify-center items-center gap-2">
@@ -119,9 +125,9 @@
               </button>
             }
             <div
-            class="absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-gray-400/5 z-0 group-hover:bg-green-500/10 transition-all duration-500">
-          </div>
+              class="absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-gray-400/5 z-0 group-hover:bg-green-500/10 transition-all duration-500">
             </div>
+          </div>
         </div>
 
       } @empty {

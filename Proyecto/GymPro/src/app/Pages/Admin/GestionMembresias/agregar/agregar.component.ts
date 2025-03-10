@@ -51,7 +51,7 @@ export class AgregarComponent {
       id: 0,
       Activa: true,
       Nombre: this.f['nombre'].value,
-      Descripcion: this.beneficiosList.join(','),
+      Descripcion: this.beneficiosList.join('.'),
       DuracionMeses: this.f['duracionMeses'].value,
       Precio: this.f['precio'].value,
       publicoObjectivo: this.f['publicoObjectivo'].value

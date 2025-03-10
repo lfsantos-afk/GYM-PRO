@@ -50,6 +50,8 @@ export class HistorialComponent implements OnInit {
     {nombre: 'Pendientes de pago', valor: EstadoSuscripcion.FaltaPago},
     {nombre: 'Activas-CANCELADAS', valor: EstadoSuscripcion.ActivaCancelada}
   ];
+  AlgunaActiva = false;
+
 
   get suscripcionesFiltradas(): Suscripcion[] {
     if (this.filtroActual === 'todas') {
@@ -72,6 +74,7 @@ export class HistorialComponent implements OnInit {
       this.notificacion.NotificarError("Algo salio mal al cargar tus suscripciones :(");
     } else {
       this.Suscripciones = result.Suscripciones;
+      this.AlgunaActiva = this.Suscripciones.filter(x => x.Estatus === EstadoSuscripcion.Activa || x.Estatus === EstadoSuscripcion.ActivaCancelada).length > 0;
     }
   }
 
