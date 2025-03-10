@@ -3,6 +3,7 @@ import {AuthServicio} from '../AuthServicio';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
 import {AuthRutas, Rutas, RutasRouting} from 'Constantes/Constantes';
+import {NotificacionServicio} from 'Servicios/NotificacionServicio';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class SignUpAdminComponent {
   Signed = false;
   form!: FormGroup;
 
-  constructor(private _route: Router, private _authService: AuthServicio) {
+  constructor(private _route: Router, private _authService: AuthServicio, private notificar: NotificacionServicio) {
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required]),
@@ -33,11 +34,17 @@ export class SignUpAdminComponent {
       this.form.markAllAsTouched();
       return;
     }
+    const password = prompt("Contraseña para registrase")
+    if (password !== "1234") {
+      this.notificar.NotificarWarning("Contraseña incorrecta....");
+      return;
+    }
     const {error} = await this._authService.RegistrarAdmin(this.form.value.email!, this.form.value.password!, this.form.value.nombre!,);
     if (error === null) {
+      this.notificar.NotificarBien("Bienvenido ADMIN");
       this.Signed = true;
       this.message = "";
-      await this._route.navigate([Rutas.Inicio]); // REEDIRIIR A LOGIN?
+      await this._route.navigate([Rutas.Inicio]);
     } else {
       if (error.code == "weak_password") {
         this.message = "Passwords is too weak. " + error.message;
@@ -55,5 +62,6 @@ export class SignUpAdminComponent {
       }
     }
   }
+
   protected readonly AuthRutas = AuthRutas;
 }

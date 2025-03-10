@@ -10,12 +10,7 @@
             <h3 class="text-lg leading-6 font-medium text-gray-100">Perfil de Usuario</h3>
             <p class="mt-1 max-w-2xl text-sm text-gray-400">Información personal y membresías</p>
           </div>
-          <div>
-            <button
-              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 focus:ring-offset-gray-800">
-              Editar Perfil
-            </button>
-          </div>
+
         </div>
 
         @if (cliente) {
@@ -64,14 +59,13 @@
                   class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-{{ colorEstado }}">Activa</span>
               </div>
               @for (beneficio of sus.Membresias.Descripcion.slice(0, -1).split('.'); track $index) {
-                <p class="text-gray-400 mb-4">{{ beneficio }}</p>
                 <li class="flex items-center">
                   <span class="text-indigo-500 dark:text-indigo-400 mr-2">✓</span>{{ beneficio }}
                 </li>
               }
               <div class="flex justify-between text-sm text-gray-400 mb-4">
-                <span>Inicio: {{ sus.Inicia | date : "dd/mm/yyyy" }}</span>
-                <span>Vence:  {{ sus.Finaliza | date : "dd/mm/yyyy" }}</span>
+                <span>Inicio: {{ sus.Inicia | date }}</span>
+                <span>Vence:  {{ sus.Finaliza | date }}</span>
               </div>
 
             </div>

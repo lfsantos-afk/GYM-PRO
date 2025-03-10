@@ -85,7 +85,7 @@
               }
             </div>
 
-            @if (diasRestantes(suscripcion.Finaliza) < 7 && !AlgunaActiva && suscripcion.Renovante) {
+            @if (diasRestantes(suscripcion.Finaliza) < 7 && !AlgunaActiva && suscripcion.Renovante ) {
 
               <button
                 [routerLink]="[Rutas.Pagar, suscripcion.id]"

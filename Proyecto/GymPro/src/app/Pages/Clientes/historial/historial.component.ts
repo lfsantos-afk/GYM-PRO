@@ -74,7 +74,7 @@ export class HistorialComponent implements OnInit {
       this.notificacion.NotificarError("Algo salio mal al cargar tus suscripciones :(");
     } else {
       this.Suscripciones = result.Suscripciones;
-      this.AlgunaActiva = this.Suscripciones.filter(x => x.Estatus === EstadoSuscripcion.Activa).length > 0;
+      this.AlgunaActiva = this.Suscripciones.filter(x => x.Estatus === EstadoSuscripcion.Activa || x.Estatus === EstadoSuscripcion.ActivaCancelada).length > 0;
     }
   }
 
