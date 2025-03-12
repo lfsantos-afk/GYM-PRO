@@ -49,14 +49,18 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
 
         @for (sus of Suscripciones; track $index) {
-          @let colorEstado = sus.Estatus == EstadoSuscripcion.Activa ? "green-500" : sus.Estatus == EstadoSuscripcion.ActivaCancelada || sus.Estatus == EstadoSuscripcion.FaltaPago ? "orange-300" : "red-900";
+          @let colorEstado = sus.Estatus == EstadoSuscripcion.Activa ? 'bg-green-400' :
+          sus.Estatus == EstadoSuscripcion.ActivaCancelada ? 'bg-green-600' :
+            sus.Estatus == EstadoSuscripcion.FaltaPago ? 'bg-amber-200' :
+              sus.Estatus == EstadoSuscripcion.Cancelada ? 'bg-red-400' : '';
+
           <div
             class="bg-gray-800 rounded-lg shadow-lg overflow-hidden border-t-4 border-{{ colorEstado }}">
             <div class="p-5">
               <div class="flex justify-between items-center mb-3">
                 <h3 class="text-lg font-semibold text-gray-100">{{ sus.Membresias.Nombre }}</h3>
                 <span
-                  class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-{{ colorEstado }}">Activa</span>
+                  class="px-2 py-1 text-xs font-semibold rounded-full {{colorEstado}} text-white">{{sus.Estatus}}</span>
               </div>
               @for (beneficio of sus.Membresias.Descripcion.slice(0, -1).split('.'); track $index) {
                 <li class="flex items-center">
