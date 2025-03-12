@@ -4,13 +4,13 @@ import {Roles} from 'Constantes/Roles';
 import {Rutas} from 'Constantes/Constantes';
 import {ChartModule} from 'primeng/chart';
 import {TableModule} from 'primeng/table';
-import {CurrencyPipe} from '@angular/common';
+import {CurrencyPipe, DecimalPipe} from '@angular/common';
 import {FechaContador, GrupoMembresia, ReporteSuscripciones} from 'Modelos/Reportes';
 
 
 @Component({
   selector: 'app-reportes',
-  imports: [ChartModule, TableModule, CurrencyPipe],
+  imports: [ChartModule, TableModule, CurrencyPipe,DecimalPipe],
   templateUrl: './reportes.component.html',
   styleUrl: './reportes.component.css'
 })
